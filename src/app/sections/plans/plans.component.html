@@ -1,0 +1,219 @@
+<section class="section section-lg pt-lg-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="display-4">Planos de assinatura</h2>
+            </div>
+            <div class="col-lg-12" id="plans">
+                <div class="row row-grid">
+                    <div class="col-lg-4" *ngFor="let plan of listPlans; index as i;">
+                        <div class="card card-lift--hover shadow border-0">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-{{plan['color']}} rounded-circle mb-4 icon-flt">
+                                    <i class="{{plan['icon']}}"></i>
+                                </div>
+                                <h6 class="text-{{plan['color']}} text-uppercase">{{ plan['titulo'] }}</h6>
+                                <ul class="list-unstyled mt-2" *ngFor="let vantagem of plan['vantagens']; index as i;">
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-check text-{{plan['color']}}"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">{{vantagem}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a href="javascript:void(0)" class="btn btn-{{plan['color']}} mt-4 col">Assinar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Another video
+    <section class="section section-lg pt-lg-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="display-4">Planos de assinatura</h2>
+            </div>
+            <div class="col-lg-12" id="plans">
+                <div class="row row-grid">
+                    <div class="col-lg-4">
+                        <div class="card card-lift--hover shadow border-0">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-primary rounded-circle mb-4 icon-flt">
+                                    <i class="ni ni-book-bookmark"></i>
+                                </div>
+                                <h6 class="text-primary text-uppercase">Plano Basic</h6>
+                                <ul class="list-unstyled mt-2">
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">1 mês</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-key"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">Acesso <strong>ilimitado</strong></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+
+                                            <div class="mr-2">
+                                                <i class="ni ni-satisfied"></i>
+                                            </div>
+
+                                            <div>
+                                                <p class="mb-0">Questionário de até 10 questões</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">+ 100.000 questões</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a href="javascript:void(0)" class="btn btn-primary mt-4 col">Assinar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card card-lift--hover shadow border-0">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-success rounded-circle mb-4 icon-flt">
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h6 class="text-success text-uppercase">Plano Pro</h6>
+                                <ul class="list-unstyled mt-2">
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">3 meses</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-key"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">Acesso <strong>ilimitado</strong></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+
+                                            <div class="mr-2">
+                                                <i class="ni ni-satisfied"></i>
+                                            </div>
+
+                                            <div>
+                                                <p class="mb-0">Questionário de até 100 questões</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">+ 250.000 questões</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a href="javascript:void(0)" class="btn btn-success mt-4 col">Assinar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card card-lift--hover shadow border-0 bg-warning text-white">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-warning rounded-circle mb-4 icon-flt">
+                                    <i class="fa fa-diamond"></i>
+                                </div>
+                                <h6 class="text-white text-uppercase">Plano Premium</h6>
+                                <ul class="list-unstyled mt-2 text-white">
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">12 meses de acesso</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-key"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">Acesso <strong>ilimitado</strong></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+
+                                            <div class="mr-2">
+                                                <i class="ni ni-satisfied"></i>
+                                            </div>
+
+                                            <div>
+                                                <p class="mb-0">Questionário de até 1000 questões</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-2">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div>
+                                                <p class="mb-0">+ 100.000 questões</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a href="javascript:void(0)" class="btn btn-outline-white mt-4 col">Assinar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>s
+ -->
