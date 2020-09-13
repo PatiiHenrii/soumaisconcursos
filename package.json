@@ -8,7 +8,9 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
+        "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+        // "start": "node server.js", // apagar uma das linhas para o heroku
+        "postinstall": "ng build --aot --prod"
     },
     "private": true,
     "dependencies": {
@@ -23,6 +25,7 @@
         "@angular/platform-browser-dynamic": "9.0.5",
         "@angular/router": "9.0.5",
         "@ng-bootstrap/ng-bootstrap": "6.0.0",
+        "express": "^4.17.1",
         "jw-bootstrap-switch-ng2": "2.0.5",
         "moment": "^2.24.0",
         "ng2-nouislider": "1.7.13",

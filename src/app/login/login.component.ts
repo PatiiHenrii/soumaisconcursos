@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+import { Usuario } from '../shared/models/usuario';
 
 declare var FB: any;
 
@@ -8,15 +11,32 @@ declare var FB: any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  focus;
-  focus1;
-  constructor() { }
+
+  formUser: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.loginByFacebook();
+    this.createFormUser(new Usuario());
   }
 
-  loginByFacebook() {
+  private createFormUser(usuario: Usuario) {
+    this.formUser = this.fb.group({
+      codigo: [usuario.codigo],
+      primeiro_nome: [usuario.primeiro_nome],
+      segundo_nome: [usuario.segundo_nome],
+      email: [usuario.email],
+      endreco: [usuario.endreco],
+      cidade: [usuario.cidade],
+      pais: [usuario.pais],
+      codigo_postal: [usuario.codigo_postal],
+      data_inscricao: [usuario.data_inscricao],
+      tipo_inscricao: [usuario.tipo_inscricao],
+      dados_inscricao: [usuario.dados_inscricao]
+    });
+  }
+
+  private loginByFacebook() {
     (window as any).fbAsyncInit = function () {
       FB.init({
         appId: '648974655750323',
@@ -36,9 +56,7 @@ export class LoginComponent implements OnInit {
     }(document, 'script', 'facebook-jssdk'));
   }
 
-  submitLoginFB() {
-    console.log("submit login to facebook");
-    // FB.login();
+  submitLoginFB() {    
     FB.login((response) => {
       console.log('submitLogin', response);
       if (response.authResponse) {
@@ -57,6 +75,11 @@ export class LoginComponent implements OnInit {
         console.log('User login failed');
       }
     });
+  }
 
+  submitLoginGoogle() {
+  }
+
+  submitForm() {
   }
 }
