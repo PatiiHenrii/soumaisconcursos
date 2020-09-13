@@ -12,6 +12,7 @@ export class AngularSectionComponent implements OnInit {
   toDate: NgbDate;
   hoveredDate: NgbDate;
   closeResult: string;
+  model : NgbDate;
   model1 : NgbDate;
   model2 : NgbDate;
 

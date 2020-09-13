@@ -11,7 +11,8 @@ declare var FB: any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  focus = true;
+  focus1 = false;
   formUser: FormGroup;
   constructor(private fb: FormBuilder) { }
 
