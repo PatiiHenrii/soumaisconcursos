@@ -14054,10 +14054,6 @@ textarea[resize=horizontal] {
     font-size: 3.25rem
 }
 
-.icon-lg+.icon-text {
-    width: calc(100% - $icon-size-lg - 1)
-}
-
 .icon-sm {
     width: 2rem;
     height: 2rem
@@ -14066,10 +14062,6 @@ textarea[resize=horizontal] {
 .icon-sm i,
 .icon-sm svg {
     font-size: 1.25rem
-}
-
-.icon-sm+.icon-text {
-    width: calc(100% - $icon-size-sm - 1)
 }
 
 .icon-shape {
