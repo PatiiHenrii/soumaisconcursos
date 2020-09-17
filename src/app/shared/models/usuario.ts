@@ -7,7 +7,8 @@ export class Usuario {
  cidade: string = '';
  pais: string = '';
  codigo_postal: string = '';
- data_inscricao: string = '';
+ data_inscricao: Date;
  tipo_inscricao: string = '';
  dados_inscricao: string = '';
+ senha: string = '';
 }
