@@ -16,6 +16,7 @@ import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import { SectionsModule } from './sections/sections.module';
 import { HttpClientModule } from '@angular/common/http';
+import { QuestionsComponent } from './questions/questions.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     NavbarComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    QuestionsComponent
   ],
   imports: [
     BrowserModule,
