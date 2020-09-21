@@ -41,20 +41,20 @@ export class QuestionsComponent implements OnInit {
       case 'ano':
         if(this.ano){
           this.anoList.push(this.ano);
-          this.searchList['ano'] = this.anoList;
+          this.searchList.push({ano: this.anoList});
         }
         break;
       case 'banca':
         this.bancaList.push(this.banca);
-        this.searchList['banca'] = this.bancaList;
+        this.searchList.push({banca: this.bancaList});
         break;
       case 'disciplina':
         this.disciplinaList.push(this.disciplina);
-        this.searchList['disciplina'] = this.disciplinaList;
+        this.searchList.push({disciplina: this.disciplinaList});
         break;
       case 'instituicao':
         this.instituicaoList.push(this.instituicao);
-        this.searchList['instituicao'] = this.instituicaoList;
+        this.searchList.push({instituicao: this.instituicaoList});
         break;
     }
     console.log(this.searchList);
