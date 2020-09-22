@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+            <ul class="navbar-nav align-items-lg-center ml-lg-auto navbar-nav-hover">
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tooltip" [routerLink]="['/home']" title="Página Inicial">
                         <span class="nav-link-inner--text">Inicio</span>
@@ -36,10 +36,16 @@
                         <span class="nav-link-inner--text">Questões</span>
                     </a>
                 </li>
-                <li class="nav-item d-none d-lg-block ml-lg-4">
-                    <a [routerLink]="['/login']" class="btn btn-neutral">
+                <li class="nav-item d-none d-lg-block ml-lg-4 dropdown">
+                    <a [routerLink]="['/login']" class="btn btn-neutral" data-toggle="dropdown" role="button">
                         <span class="nav-link-inner--text">Entrar</span>
                     </a>
+                    <div class="dropdown-menu">
+                        <a [routerLink]="['/landing']" class="dropdown-item">Landing</a>
+                        <a [routerLink]="['/user-profile']" class="dropdown-item">Profile</a>
+                        <a [routerLink]="['/login']" class="dropdown-item">Login</a>
+                        <a [routerLink]="['/register']" class="dropdown-item">Register</a>
+                      </div>
                 </li>
             </ul>
         </div>

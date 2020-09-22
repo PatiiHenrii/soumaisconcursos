@@ -53,12 +53,4 @@ export class NavbarComponent implements OnInit {
             return false;
         }
     }
-
-    scroll(index: any) {
-        var elements = document.getElementById(index);
-        console.log('scroll');
-        console.log(elements);
-        const el = elements as HTMLElement;
-        el.scrollIntoView({behavior:"smooth", block: 'center'});
-    }
 }
