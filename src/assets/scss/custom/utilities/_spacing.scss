@@ -1,31 +1,31 @@
 // Spacing columns vertically
-
-.row.row-grid > [class*="col-"] + [class*="col-"] {
+.row.row-grid>[class*="col-"]+[class*="col-"] {
     margin-top: 3rem;
 }
 
 @include media-breakpoint-up(lg) {
-    .row.row-grid > [class*="col-lg-"] + [class*="col-lg-"] {
-        margin-top: 0;
-    }
-}
-@include media-breakpoint-up(md) {
-    .row.row-grid > [class*="col-md-"] + [class*="col-md-"] {
-        margin-top: 0;
-    }
-}
-@include media-breakpoint-up(sm) {
-    .row.row-grid > [class*="col-sm-"] + [class*="col-sm-"] {
+    .row.row-grid>[class*="col-lg-"]+[class*="col-lg-"] {
         margin-top: 0;
     }
 }
 
-.row-grid + .row-grid {
+@include media-breakpoint-up(md) {
+    .row.row-grid>[class*="col-md-"]+[class*="col-md-"] {
+        margin-top: 0;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .row.row-grid>[class*="col-sm-"]+[class*="col-sm-"] {
+        margin-top: 0;
+    }
+}
+
+.row-grid+.row-grid {
     margin-top: 3rem;
 }
 
 // Negative margins and paddings
-
 @media(min-width: 992px) {
     [class*="mt--"],
     [class*="mr--"],
@@ -34,10 +34,7 @@
         position: relative;
         z-index: 5;
     }
-
-
     // Large negative margins in pixels
-
     .mt--100 {
         margin-top: -100px !important;
     }
@@ -65,13 +62,16 @@
     .mt--300 {
         margin-top: -300px !important;
     }
+    .mt--450 {
+        margin-top: -450px!important
+    }
+    .mt--500 {
+        margin-top: -500px!important
+    }
     .mb--300 {
         margin-bottom: -300px !important;
     }
-
-
     // Large margins in pixels
-
     .pt-100 {
         padding-top: 100px !important;
     }

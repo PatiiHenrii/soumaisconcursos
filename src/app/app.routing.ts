@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { QuestionsComponent } from './questions/questions.component';
+import { CadQuestionsComponent } from './questions/cad-questions/cad-questions.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'questions', component: QuestionsComponent },
+  { path: 'cad-questions', component: CadQuestionsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

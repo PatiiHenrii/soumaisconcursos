@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { SectionsModule } from './sections/sections.module';
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionsComponent } from './questions/questions.component';
+import { CadQuestionsComponent } from './questions/cad-questions/cad-questions.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { QuestionsComponent } from './questions/questions.component';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    CadQuestionsComponent
   ],
   imports: [
     BrowserModule,
