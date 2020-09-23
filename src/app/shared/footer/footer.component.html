@@ -1,5 +1,5 @@
 <footer class="footer" [ngClass]="{'has-cards': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'}">
-    <div *ngIf="getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'">
+    <div *ngIf="getPath()==='/' || getPath()==='/home' || getPath()==='/login' || getPath()==='/register'">
         <app-plans></app-plans>
     </div>
     <div class="container">

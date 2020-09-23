@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -26,7 +27,7 @@ export class PlansComponent implements OnInit {
       "vantagens" : ["12 meses de acesso", "Acesso ilimitado", "Questionário de até 1000 questões", "+ 250.000 questões"]
     }
   ];
-  constructor() { }
+  constructor(private router: Router) { }
 
   
 
@@ -34,6 +35,11 @@ export class PlansComponent implements OnInit {
     // console.log(this.listPlans);
     // console.log(typeof(this.listPlans));
     // console.log(this.listPlans[0]);
+  }
+
+  getPath(){
+    console.log(this.router.url);
+    return this.router.url;
   }
 
 }

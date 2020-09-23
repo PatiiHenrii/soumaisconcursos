@@ -3,6 +3,7 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
+import { PlansComponent } from './sections/plans/plans.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'questions', component: QuestionsComponent },
+  { path: 'plans', component: PlansComponent },
   { path: 'cad-questions', component: CadQuestionsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
