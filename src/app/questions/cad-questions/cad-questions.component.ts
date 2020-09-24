@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Ano } from 'src/app/shared/models/question.model';
+import { QuestionsService } from 'src/app/shared/providers/questions/questions.service';
 
 @Component({
   selector: 'app-cad-questions',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadQuestionsComponent implements OnInit {
 
-  constructor() { }
+  listOfAnos: Ano[];
+
+  constructor(
+    private questionService: QuestionsService
+  ) { }
 
   ngOnInit(): void {
+    this.getListOfAnos();
+  }
+
+  getListOfAnos() {
+    this.questionService.selectAnos().subscribe(
+      el => {
+        console.log(el);
+        this.listOfAnos = el;
+      }
+    )
   }
 
 }

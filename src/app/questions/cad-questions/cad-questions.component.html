@@ -35,7 +35,22 @@
                         </ngb-tab>
                         <ngb-tab title="Ano">
                             <ng-template ngbTabContent>
-                                <p class="description">Ano sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Código</th>
+                                            <th scope="col">Ano</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let ano of listOfAnos">
+                                            <td>delete</td>
+                                            <td>{{ano.id}}</td>
+                                            <td>{{ano.ano}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Banca">
@@ -45,6 +60,12 @@
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Instituição">
+                            <ng-template ngbTabContent>
+                                <p class="description">Instituição denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+                                    keffiyeh dreamcatcher synth.</p>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Disciplina">
                             <ng-template ngbTabContent>
                                 <p class="description">Instituição denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
                                     keffiyeh dreamcatcher synth.</p>
