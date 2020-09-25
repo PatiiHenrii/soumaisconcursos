@@ -12,9 +12,10 @@
         </div>
         <!-- SVG separator -->
         <div class="separator separator-bottom separator-skew">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-       <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-     </svg>
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
         </div>
     </section>
     <section class="section">
@@ -28,89 +29,112 @@
                     <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
                         <ngb-tab title="Questões">
                             <ng-template ngbTabContent class="shadow-none">
-                                <p class="description">Questões denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+                                <p class="description">Questões denim you probably haven't heard of them jean shorts
+                                    Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche
+                                    tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
                                     keffiyeh dreamcatcher synth.</p>
-                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
+                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin.
+                                    Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Ano">
                             <ng-template ngbTabContent>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Código</th>
-                                            <th scope="col">Ano</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let ano of listOfAnos">
-                                            <td>delete</td>
-                                            <td>{{ano.id}}</td>
-                                            <td>{{ano.ano}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="row m-0">
+                                                <th scope="col" class="col-3"></th>
+                                                <th scope="col" class="col-3">Código</th>
+                                                <th scope="col" class="col-6">Ano</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let ano of listOfAnos" class="row m-0">
+                                                <td class="col-3 d-flex justify-content-around">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </td>
+                                                <td class="col-3">{{ano.id}}</td>
+                                                <td class="col-6">{{ano.ano}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Banca">
                             <ng-template ngbTabContent>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Código</th>
-                                            <th scope="col">Banca</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let banca of listOfBanca">
-                                            <td>delete</td>
-                                            <td>{{banca.id}}</td>
-                                            <td>{{banca.banca}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="row m-0">
+                                                <th scope="col" class="col-3"></th>
+                                                <th scope="col" class="col-3">Código</th>
+                                                <th scope="col" class="col-6">Banca</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let banca of listOfBanca" class="row m-0">
+                                                <td class="col-3 d-flex justify-content-around">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </td>
+                                                <td class="col-3">{{banca.id}}</td>
+                                                <td class="col-6">{{banca.banca}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Instituição">
                             <ng-template ngbTabContent>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Código</th>
-                                            <th scope="col">Instituição</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let instituicao of listOfInstituicao">
-                                            <td>delete</td>
-                                            <td>{{instituicao.id}}</td>
-                                            <td>{{instituicao.instituicao}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="row m-0">
+                                                <th scope="col" class="col-3"></th>
+                                                <th scope="col" class="col-3">Código</th>
+                                                <th scope="col" class="col-6">Instituição</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let instituicao of listOfInstituicao" class="row m-0">
+                                                <td class="col-3 d-flex justify-content-around">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </td>
+                                                <td class="col-3">{{instituicao.id}}</td>
+                                                <td class="col-6">{{instituicao.instituicao}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Disciplina">
                             <ng-template ngbTabContent>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Código</th>
-                                            <th scope="col">Disciplina</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let disciplina of listOfDisciplina">
-                                            <td>delete</td>
-                                            <td>{{disciplina.id}}</td>
-                                            <td>{{disciplina.disciplina}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="row m-0">
+                                                <th scope="col" class="col-3"></th>
+                                                <th scope="col" class="col-3">Código</th>
+                                                <th scope="col" class="col-6">Disciplina</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let disciplina of listOfDisciplina" class="row m-0">
+                                                <td class="col-3 d-flex justify-content-around">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </td>
+                                                <td class="col-3">{{disciplina.id}}</td>
+                                                <td class="col-6">{{disciplina.disciplina}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>
