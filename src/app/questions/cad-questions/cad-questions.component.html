@@ -55,20 +55,62 @@
                         </ngb-tab>
                         <ngb-tab title="Banca">
                             <ng-template ngbTabContent>
-                                <p class="description">Banca denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-                                    dreamcatcher synth.</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Código</th>
+                                            <th scope="col">Banca</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let banca of listOfBanca">
+                                            <td>delete</td>
+                                            <td>{{banca.id}}</td>
+                                            <td>{{banca.banca}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Instituição">
                             <ng-template ngbTabContent>
-                                <p class="description">Instituição denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-                                    keffiyeh dreamcatcher synth.</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Código</th>
+                                            <th scope="col">Instituição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let instituicao of listOfInstituicao">
+                                            <td>delete</td>
+                                            <td>{{instituicao.id}}</td>
+                                            <td>{{instituicao.instituicao}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Disciplina">
                             <ng-template ngbTabContent>
-                                <p class="description">Instituição denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-                                    keffiyeh dreamcatcher synth.</p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Código</th>
+                                            <th scope="col">Disciplina</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let disciplina of listOfDisciplina">
+                                            <td>delete</td>
+                                            <td>{{disciplina.id}}</td>
+                                            <td>{{disciplina.disciplina}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>
