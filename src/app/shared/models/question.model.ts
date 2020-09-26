@@ -14,3 +14,7 @@ export interface Disciplina {
  id: number;
  disciplina: string;
 }
+export interface Nivel {
+ id: number;
+ nivel: string;
+}

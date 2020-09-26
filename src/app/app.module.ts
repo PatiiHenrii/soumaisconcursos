@@ -17,6 +17,7 @@ import { SectionsModule } from './sections/sections.module';
 import { HttpClientModule } from '@angular/common/http';
 import { QuestionsComponent } from './questions/questions.component';
 import { CadQuestionsComponent } from './questions/cad-questions/cad-questions.component';
+import { ModalEditComponent } from './questions/modal-edit/modal-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CadQuestionsComponent } from './questions/cad-questions/cad-questions.c
     FooterComponent,
     LoginComponent,
     QuestionsComponent,
-    CadQuestionsComponent
+    CadQuestionsComponent,
+    ModalEditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Ano, Banca, Instituicao, Disciplina } from 'src/app/shared/models/question.model';
+import { Ano, Banca, Instituicao, Disciplina, Nivel } from 'src/app/shared/models/question.model';
 import { QuestionsService } from 'src/app/shared/providers/questions/questions.service';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 
 @Component({
   selector: 'app-cad-questions',
@@ -13,16 +15,30 @@ export class CadQuestionsComponent implements OnInit {
   listOfBanca: Banca[];
   listOfInstituicao: Instituicao[];
   listOfDisciplina: Disciplina[];
+  listOfNiveis: Nivel[];
 
   constructor(
-    private questionService: QuestionsService
-  ) { }
+    private questionService: QuestionsService,
+    private modalService: NgbModal,
+    config: NgbModalConfig
+  ) {
+    config.backdrop = 'static';
+  }
 
   ngOnInit(): void {
     this.getListOfAnos();
     this.getListOfBancas();
     this.getListOfDisciplina();
     this.getListOfInstituicao();
+  }
+
+  getListOfNiveis() {
+    this.questionService.selectNiveis().subscribe(
+      el => {
+        console.log(el);
+        this.listOfNiveis = el.content;
+      }
+    )
   }
 
   getListOfAnos() {
@@ -61,4 +77,9 @@ export class CadQuestionsComponent implements OnInit {
     )
   }
 
+  edit(type: string, data: any) {
+    console.log(data);
+    const modalRef = this.modalService.open(ModalEditComponent);
+    modalRef.componentInstance.datas = {type, data};
+  }
 }

@@ -19,6 +19,14 @@ export class QuestionsService {
 
   constructor(private http: HttpClient) { }
 
+  selectNiveis(page = 0, size = 10): Observable<PageOf> {
+    return this.http.get<PageOf>(`${urlApi}/nivel?page=${page}&size=${size}`)
+      .pipe(
+        take(1),
+        catchError(this.handleError<PageOf>('selectNiveis'))
+      )
+  }
+
   selectAnos(page = 0, size = 10): Observable<PageOf> {
     return this.http.get<PageOf>(`${urlApi}/ano?page=${page}&size=${size}`)
       .pipe(
