@@ -7,15 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ModalEditComponent implements OnInit {
 
-  @Input() datas;
+  @Input() title;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.datas);
-  }
-
-  close() {
+    
   }
 
 }

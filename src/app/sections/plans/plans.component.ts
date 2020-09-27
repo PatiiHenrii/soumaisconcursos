@@ -38,7 +38,6 @@ export class PlansComponent implements OnInit {
   }
 
   getPath(){
-    console.log(this.router.url);
     return this.router.url;
   }
 

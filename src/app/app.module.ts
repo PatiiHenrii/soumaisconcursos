@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuestionsComponent } from './questions/questions.component';
 import { CadQuestionsComponent } from './questions/cad-questions/cad-questions.component';
 import { ModalEditComponent } from './questions/modal-edit/modal-edit.component';
+import { TblDatasQuestionComponent } from './questions/tbl-datas-question/tbl-datas-question.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ModalEditComponent } from './questions/modal-edit/modal-edit.component'
     LoginComponent,
     QuestionsComponent,
     CadQuestionsComponent,
-    ModalEditComponent
+    ModalEditComponent,
+    TblDatasQuestionComponent
   ],
   imports: [
     BrowserModule,

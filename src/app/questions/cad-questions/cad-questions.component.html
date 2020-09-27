@@ -12,7 +12,8 @@
         </div>
         <!-- SVG separator -->
         <div class="separator separator-bottom separator-skew">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                xmlns="http://www.w3.org/2000/svg">
                 <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
             </svg>
         </div>
@@ -25,7 +26,8 @@
                     <div class="mb-3 mt-3">
                         <h3>Cadatro de questões</h3>
                     </div>
-                    <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
+                    <ngb-tabset class="custom-tab-content flex-column flex-md-row" type="pills">
+
                         <ngb-tab title="Questões">
                             <ng-template ngbTabContent class="shadow-none">
                                 <div class="table-responsive">
@@ -45,7 +47,77 @@
                                         <tbody>
                                             <tr *ngFor="let ano of listOfAnos" class="row m-0">
                                                 <td class="col-3 d-flex justify-content-around">
-                                                    <button class="btn btn-sm btn-primary" type="button" (click)="edit('ano', ano)">
+                                                    <button class="btn btn-sm btn-primary" type="button"
+                                                        (click)="open(classic, ano, 'ano')">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </button>
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </td>
+                                                <td class="col-3">{{ano.id}}</td>
+                                                <td class="col-6">{{ano.ano}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        
+                        <ngb-tab *ngFor="let tab of tabsToShow" [title]="tab.title">
+                            <ng-template ngbTabContent class="shadow-none">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="row m-0">
+                                                <th scope="col" class="col-3">
+                                                    <button class="btn btn-sm btn-primary" type="button">
+                                                        <span class="btn-inner--text mr-1">Novo</span>
+                                                        <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+                                                    </button>
+                                                </th>
+                                                <th scope="col" class="col-3">Código</th>
+                                                <th scope="col" class="col-6">{{tab.title}}</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr *ngFor="let data of tab.dataToList" class="row m-0">
+                                                <td class="col-3 d-flex justify-content-around">
+                                                    <button class="btn btn-sm btn-primary" type="button"
+                                                        (click)="open(classic, data, type)">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </button>
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </td>
+                                                <td class="col-3">{{data.id}}</td>
+                                                <td class="col-6">{{data[tab.type]}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+
+                        <!-- <ngb-tab title="Questões">
+                            <ng-template ngbTabContent class="shadow-none">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr class="row m-0">
+                                                <th scope="col" class="col-3">
+                                                    <button class="btn btn-sm btn-primary" type="button">
+                                                        <span class="btn-inner--text mr-1">Novo</span>
+                                                        <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+                                                    </button>
+                                                </th>
+                                                <th scope="col" class="col-3">Código</th>
+                                                <th scope="col" class="col-6">Ano</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let ano of listOfAnos" class="row m-0">
+                                                <td class="col-3 d-flex justify-content-around">
+                                                    <button class="btn btn-sm btn-primary" type="button"
+                                                        (click)="open(classic, ano, 'ano')">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </button>
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
@@ -210,10 +282,34 @@
                                     </table>
                                 </div>
                             </ng-template>
-                        </ngb-tab>
+                        </ngb-tab> -->
                     </ngb-tabset>
                 </div>
             </div>
         </div>
     </section>
 </main>
+
+<ng-template #classic let-c="close" let-d="dismiss">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 id="modal-title-default">Atualizar dados</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form role="form" [formGroup] = formMain>
+                <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+                    <div class="input-group input-group-alternative">
+                        <input class="form-control" placeholder="Novo valor" type="text" (focus)="focus=true"
+                            (blur)="focus=false" [formControlName]="sourceType">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
