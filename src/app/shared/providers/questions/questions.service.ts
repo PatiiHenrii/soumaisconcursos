@@ -19,6 +19,25 @@ export class QuestionsService {
 
   constructor(private http: HttpClient) { }
 
+  selectSource(type: string, page = 0, size = 10): Observable<PageOf> {
+    return this.http.get<PageOf>(`${urlApi}/${type}?page=${page}&size=${size}`)
+      .pipe(
+        take(1),
+        catchError(this.handleError<PageOf>('selectNiveis'))
+      )
+  }
+
+  deleteSource(source: any, type: string, page = 0, size = 10){
+    let body = JSON.stringify(source);
+    this.httpOptions['body'] = body;
+    return this.http.delete<any>(`${urlApi}/${type}?page=${page}&size=${size}`,this.httpOptions)
+      .pipe(
+        take(1),
+        catchError(this.handleError<PageOf>('selectNiveis'))
+      )
+  }
+
+
   selectNiveis(page = 0, size = 10): Observable<PageOf> {
     return this.http.get<PageOf>(`${urlApi}/nivel?page=${page}&size=${size}`)
       .pipe(

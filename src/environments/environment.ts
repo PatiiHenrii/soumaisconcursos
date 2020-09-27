@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_uri: "http://localhost:8080"
+  api_uri: "https://api-soumaisconcurso.herokuapp.com"
 };
 
 /*

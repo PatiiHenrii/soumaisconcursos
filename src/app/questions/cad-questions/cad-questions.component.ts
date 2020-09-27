@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Ano, Banca, Instituicao, Disciplina, Nivel } from 'src/app/shared/models/question.model';
 import { QuestionsService } from 'src/app/shared/providers/questions/questions.service';
 import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -14,15 +14,15 @@ export class CadQuestionsComponent implements OnInit {
 
   formMain: FormGroup;
 
+  listOfNiveis: Nivel[];
   listOfAnos: Ano[];
+  listOfDisciplina: Disciplina[];
   listOfBanca: Banca[];
   listOfInstituicao: Instituicao[];
-  listOfDisciplina: Disciplina[];
-  listOfNiveis: Nivel[];
   tabsToShow: any;
 
-  sourceToEdit: any;
   sourceType: string;
+  sourceShow: any;
 
   constructor(
     private questionService: QuestionsService,
@@ -33,7 +33,7 @@ export class CadQuestionsComponent implements OnInit {
   ) {
     config.backdrop = 'static';
     console.log(this.activeReoute.snapshot.data);
-    this.listOfNiveis = this.activeReoute.snapshot.data.nivel.content;
+    // this.listOfNiveis = this.activeReoute.snapshot.data.nivel.content;
     this.listOfAnos = this.activeReoute.snapshot.data.ano.content;
     this.listOfDisciplina = this.activeReoute.snapshot.data.disc.content;
     this.listOfBanca = this.activeReoute.snapshot.data.banca.content;
@@ -44,19 +44,15 @@ export class CadQuestionsComponent implements OnInit {
     // this.getListOfAnos();
     // this.getListOfBancas();
     // this.getListOfDisciplina();
-    this.getListOfInstituicao();
+    // this.getListOfInstituicao();
 
     this.tabsToShow = [
-      {title: 'Nivel', type : 'nivel', dataToList: this.listOfNiveis},
-      {title: 'Ano', type : 'ano', dataToList: this.listOfAnos},
-      {title: 'Disciplina', type : 'disciplina', dataToList: this.listOfDisciplina},
-      {title: 'Banca', type : 'banca', dataToList: this.listOfBanca},
-      {title: 'Instituição', type : 'instituicao', dataToList: this.listOfInstituicao},
+      // {title: 'Nivel', type : 'nivel', dataToList: this.listOfNiveis},
+      { title: 'Ano', type: 'ano', dataToList: this.listOfAnos },
+      { title: 'Disciplina', type: 'disciplina', dataToList: this.listOfDisciplina },
+      { title: 'Banca', type: 'banca', dataToList: this.listOfBanca },
+      { title: 'Instituição', type: 'instituicao', dataToList: this.listOfInstituicao },
     ];
-    console.log(this.tabsToShow);
-    this.tabsToShow.forEach(element => {
-      console.log(element);
-    });
   }
 
   private getListOfNiveis() {
@@ -106,8 +102,8 @@ export class CadQuestionsComponent implements OnInit {
 
   builderForm(type: string, formDatas: any) {
     this.formMain = this.fb.group({
-      id : formDatas.id,
-      [type] : formDatas[type] 
+      id: formDatas.id,
+      [type]: formDatas[type]
     });
   }
 
@@ -117,16 +113,23 @@ export class CadQuestionsComponent implements OnInit {
   //   modalRef.componentInstance.datas = {type, data};
   // }
 
-  open(content, edit, type) {
-    this.sourceToEdit = edit;
-    this.sourceType = type;
-    console.log(this.sourceToEdit);
-    console.log(this.sourceToEdit[this.sourceType]);
-    console.log(this.sourceType);
+  open(content, edit, type, modalType) {
 
-    this.builderForm(type, edit); 
-    
-    this.modalService.open(content, { windowClass: 'modal-mini', size: 'sm', centered: true}).result.then((result) => {
+    console.log(modalType)
+    let config = { windowClass: 'modal-mini', size: 'sm', centered: true };
+    if (modalType === 'notify') {
+      config.windowClass = 'modal-danger';
+    }
+
+    console.log(edit);
+    console.log(type);
+
+    this.sourceType = type;
+    this.sourceShow = edit;
+
+    this.builderForm(type, edit);
+
+    this.modalService.open(content, config).result.then((result) => {
       console.log(`Closed with: ${result}`);
     }, (reason) => {
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
@@ -135,6 +138,82 @@ export class CadQuestionsComponent implements OnInit {
 
   save() {
     console.log(this.formMain.value);
+  }
+
+  deleteItem(source: any, type: string) {
+    this.questionService.deleteSource(source, type).subscribe(
+      el => {
+        console.log(el);
+        console.log(`Delete ${type}`, source);
+        this.updateTable(type);
+      }
+        
+    )
+    // listOfNiveis: Nivel[];
+    // listOfAnos: Ano[];
+    // listOfDisciplina: Disciplina[];
+    // listOfBanca: Banca[];
+    // listOfInstituicao: Instituicao[];
+    console.log(source);
+    
+  }
+
+  updateTable(type: string) {
+    switch (type) {
+      case 'nivel':
+        this.questionService.selectSource(type).subscribe(
+          el => this.listOfNiveis = el.content
+        );
+        break;
+      case 'ano':
+        this.questionService.selectSource(type).subscribe(
+          el => {
+            console.log(el);
+            this.listOfAnos = el.content;
+          }
+        );
+        break;
+      case 'disciplina':
+        this.questionService.selectSource(type).subscribe(
+          el => this.listOfDisciplina = el.content
+        );
+        break;
+      case 'banca':
+        this.questionService.selectSource(type).subscribe(
+          el => this.listOfBanca = el.content
+        );
+        break;
+      case 'instituicao':
+        this.questionService.selectSource(type).subscribe(
+          el => this.listOfInstituicao = el.content
+        );
+        break;
+    }
+  }
+
+  delNivel(nivel: Nivel) {
+    console.log("Delete nivel");
+    this.questionService;
+  }
+
+  delAno(ano: Ano) {
+    console.log("Delete ano");
+    this.questionService;
+  }
+
+  delDisc(disciplina: Disciplina) {
+    console.log("Delete disciplina");
+    this.questionService;
+  }
+
+  delBanca(banca: Banca) {
+    console.log("Delete banca");
+    this.questionService;
+  }
+
+  delInst(instituicao: Instituicao) {
+    console.log("Delete instituicao");
+    this.questionService;
   }
 
   private getDismissReason(reason: any): string {

@@ -28,7 +28,7 @@ const routes: Routes = [
       banca: BancaQuestionResolver,
       inst: InstituicaoQuestionResolver, 
       disc: DisciplinaQuestionResolver,
-      nivel: NiveisQuestionResolver
+      // nivel: NiveisQuestionResolver
     }
   }
 ];

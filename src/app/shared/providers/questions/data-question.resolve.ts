@@ -12,7 +12,7 @@ export class AnoQuestionResolver implements Resolve<Ano> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this.service.selectAnos();
+    return this.service.selectSource('ano');
   }
 }
 
@@ -24,7 +24,7 @@ export class BancaQuestionResolver implements Resolve<Banca> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this.service.selectBancas();
+    return this.service.selectSource('banca');
   }
 }
 
@@ -36,7 +36,7 @@ export class InstituicaoQuestionResolver implements Resolve<Instituicao> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this.service.selectInstituicao();
+    return this.service.selectSource('instituicao');
   }
 }
 
@@ -48,7 +48,7 @@ export class DisciplinaQuestionResolver implements Resolve<Disciplina> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this.service.selectDisciplina();
+    return this.service.selectSource('disciplina');
   }
 }
 
@@ -60,6 +60,6 @@ export class NiveisQuestionResolver implements Resolve<Nivel> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this.service.selectNiveis();
+    return this.service.selectSource('nivel');
   }
 }
