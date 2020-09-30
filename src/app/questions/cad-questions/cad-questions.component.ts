@@ -140,6 +140,19 @@ export class CadQuestionsComponent implements OnInit {
     console.log(this.formMain.value);
   }
 
+  updateItem(source: any, type: string) {
+    console.log(source);
+    this.questionService.updateSource(source, type).subscribe(
+      el => {
+        console.log(el);
+        console.log(`Update ${type}`, source);
+        this.updateTable(type);
+      }
+        
+    );    
+    
+  }
+
   deleteItem(source: any, type: string) {
     this.questionService.deleteSource(source, type).subscribe(
       el => {

@@ -27,16 +27,25 @@ export class QuestionsService {
       )
   }
 
-  deleteSource(source: any, type: string, page = 0, size = 10){
+  deleteSource(source: any, type: string){
     let body = JSON.stringify(source);
     this.httpOptions['body'] = body;
-    return this.http.delete<any>(`${urlApi}/${type}?page=${page}&size=${size}`,this.httpOptions)
+    return this.http.delete<any>(`${urlApi}/${type}`,this.httpOptions)
       .pipe(
         take(1),
-        catchError(this.handleError<PageOf>('selectNiveis'))
+        catchError(this.handleError<any>('Delete - ', source))
       )
   }
 
+  updateSource(source: any, type: string){
+    let body = JSON.stringify(source);
+    this.httpOptions['body'] = body;
+    return this.http.put<any>(`${urlApi}/${type}`,this.httpOptions)
+      .pipe(
+        take(1),
+        catchError(this.handleError<any>('Update - ', source))
+      )
+  }
 
   selectNiveis(page = 0, size = 10): Observable<PageOf> {
     return this.http.get<PageOf>(`${urlApi}/nivel?page=${page}&size=${size}`)
