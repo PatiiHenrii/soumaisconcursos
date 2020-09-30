@@ -162,30 +162,42 @@ export class CadQuestionsComponent implements OnInit {
     switch (type) {
       case 'nivel':
         this.questionService.selectSource(type).subscribe(
-          el => this.listOfNiveis = el.content
+          el => {
+            this.listOfNiveis = el.content
+            window.location.reload();
+          }
         );
         break;
       case 'ano':
         this.questionService.selectSource(type).subscribe(
           el => {
-            console.log(el);
             this.listOfAnos = el.content;
+            window.location.reload();
           }
         );
         break;
       case 'disciplina':
         this.questionService.selectSource(type).subscribe(
-          el => this.listOfDisciplina = el.content
+          el =>{
+            this.listOfDisciplina = el.content
+            window.location.reload();
+          }
         );
         break;
       case 'banca':
         this.questionService.selectSource(type).subscribe(
-          el => this.listOfBanca = el.content
+          el => {
+            this.listOfBanca = el.content;
+            window.location.reload();
+          }
         );
         break;
       case 'instituicao':
         this.questionService.selectSource(type).subscribe(
-          el => this.listOfInstituicao = el.content
+          el =>{
+            this.listOfInstituicao = el.content
+            window.location.reload();
+          }
         );
         break;
     }
