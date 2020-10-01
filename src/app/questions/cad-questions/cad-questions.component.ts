@@ -33,7 +33,7 @@ export class CadQuestionsComponent implements OnInit {
   ) {
     config.backdrop = 'static';
     console.log(this.activeReoute.snapshot.data);
-    // this.listOfNiveis = this.activeReoute.snapshot.data.nivel.content;
+    this.listOfNiveis = this.activeReoute.snapshot.data.nivel.content;
     this.listOfAnos = this.activeReoute.snapshot.data.ano.content;
     this.listOfDisciplina = this.activeReoute.snapshot.data.disc.content;
     this.listOfBanca = this.activeReoute.snapshot.data.banca.content;
@@ -47,7 +47,7 @@ export class CadQuestionsComponent implements OnInit {
     // this.getListOfInstituicao();
 
     this.tabsToShow = [
-      // {title: 'Nivel', type : 'nivel', dataToList: this.listOfNiveis},
+      {title: 'Nivel', type : 'nivel', dataToList: this.listOfNiveis},
       { title: 'Ano', type: 'ano', dataToList: this.listOfAnos },
       { title: 'Disciplina', type: 'disciplina', dataToList: this.listOfDisciplina },
       { title: 'Banca', type: 'banca', dataToList: this.listOfBanca },
@@ -102,8 +102,8 @@ export class CadQuestionsComponent implements OnInit {
 
   builderForm(type: string, formDatas: any) {
     this.formMain = this.fb.group({
-      id: formDatas.id,
-      [type]: formDatas[type]
+      id: formDatas && formDatas.id ? formDatas.id : null,
+      [type]: formDatas && formDatas.id ? formDatas[type] : ''
     });
   }
 
@@ -116,9 +116,10 @@ export class CadQuestionsComponent implements OnInit {
   open(content, edit, type, modalType) {
 
     console.log(modalType)
-    let config = { windowClass: 'modal-mini', size: 'sm', centered: true };
+    let config = { windowClass: 'modal-mini', size: 'md', centered: true };
     if (modalType === 'notify') {
       config.windowClass = 'modal-danger';
+      config.size = 'sm';
     }
 
     console.log(edit);
@@ -140,13 +141,14 @@ export class CadQuestionsComponent implements OnInit {
     console.log(this.formMain.value);
   }
 
-  updateItem(source: any, type: string) {
-    console.log(source);
+  updateItem(type: string) {
+    console.log(this.formMain);
+    let source = this.formMain.value;
     this.questionService.updateSource(source, type).subscribe(
       el => {
-        console.log(el);
         console.log(`Update ${type}`, source);
-        this.updateTable(type);
+        console.log(`To -> `,el);
+        // this.updateTable(type);
       }
         
     );    

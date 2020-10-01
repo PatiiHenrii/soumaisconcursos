@@ -39,8 +39,8 @@ export class QuestionsService {
 
   updateSource(source: any, type: string){
     let body = JSON.stringify(source);
-    this.httpOptions['body'] = body;
-    return this.http.put<any>(`${urlApi}/${type}`,this.httpOptions)
+    console.log(body);
+    return this.http.put<any>(`${urlApi}/${type}`, body,this.httpOptions)
       .pipe(
         take(1),
         catchError(this.handleError<any>('Update - ', source))
