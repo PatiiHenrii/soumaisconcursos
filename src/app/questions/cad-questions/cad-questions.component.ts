@@ -107,12 +107,6 @@ export class CadQuestionsComponent implements OnInit {
     });
   }
 
-  // edit(type: string, data: any) {
-  //   console.log(data);
-  //   const modalRef = this.modalService.open(ModalEditComponent);
-  //   modalRef.componentInstance.datas = {type, data};
-  // }
-
   open(content, edit, type, modalType) {
 
     console.log(modalType)
@@ -121,9 +115,6 @@ export class CadQuestionsComponent implements OnInit {
       config.windowClass = 'modal-danger';
       config.size = 'sm';
     }
-
-    console.log(edit);
-    console.log(type);
 
     this.sourceType = type;
     this.sourceShow = edit;
@@ -137,8 +128,22 @@ export class CadQuestionsComponent implements OnInit {
     });
   }
 
-  save() {
-    console.log(this.formMain.value);
+  save(type) {
+    let source: any | any[] = this.formMain.value;
+    console.log(source[type]);
+    console.log(source[type].indexOf(','));
+    if(source[type].indexOf(',') !== -1){
+      console.log("isArray");
+    } else {
+      console.log("isn'tArray");
+    }
+    // this.questionService.saveSource(source, type).subscribe(
+    //   el => {
+    //     console.log(`Save ->`, source);
+    //     console.log(`To -> `,el);
+    //     this.updateTable(type);
+    //   }
+    // );  
   }
 
   updateItem(type: string) {
@@ -148,7 +153,7 @@ export class CadQuestionsComponent implements OnInit {
       el => {
         console.log(`Update ${type}`, source);
         console.log(`To -> `,el);
-        // this.updateTable(type);
+        this.updateTable(type);
       }
         
     );    

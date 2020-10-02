@@ -73,6 +73,10 @@
                                                         <span class="btn-inner--text mr-1">Novo</span>
                                                         <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                                                     </button>
+                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(edit, data, tab.type, 'form')">
+                                                        <span class="btn-inner--text mr-1">Varios</span>
+                                                        <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+                                                    </button>
                                                 </th>
                                                 <th scope="col" class="col-3">Código</th>
                                                 <th scope="col" class="col-6">{{tab.title}}</th>
@@ -331,7 +335,7 @@
                     <div class="input-group input-group-alternative">
                         <input class="form-control" placeholder="Novo valor" type="text" (focus)="focus=true" (blur)="focus=false" [formControlName]="sourceType">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-primary" (click)="sourceShow ? updateItem(sourceType) : save()">Salvar</button>
+                            <button type="button" class="btn btn-primary" (click)="sourceShow ? updateItem(sourceType) : save(sourceType)">Salvar</button>
                         </div>
                     </div>
                 </div>
