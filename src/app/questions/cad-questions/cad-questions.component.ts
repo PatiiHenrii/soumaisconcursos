@@ -47,7 +47,7 @@ export class CadQuestionsComponent implements OnInit {
     // this.getListOfInstituicao();
 
     this.tabsToShow = [
-      {title: 'Nivel', type : 'nivel', dataToList: this.listOfNiveis},
+      { title: 'Nivel', type: 'nivel', dataToList: this.listOfNiveis },
       { title: 'Ano', type: 'ano', dataToList: this.listOfAnos },
       { title: 'Disciplina', type: 'disciplina', dataToList: this.listOfDisciplina },
       { title: 'Banca', type: 'banca', dataToList: this.listOfBanca },
@@ -128,36 +128,40 @@ export class CadQuestionsComponent implements OnInit {
     });
   }
 
-  save(type) {
-    let source: any | any[] = this.formMain.value;
-    console.log(source[type]);
-    console.log(source[type].indexOf(','));
-    if(source[type].indexOf(',') !== -1){
-      console.log("isArray");
-    } else {
-      console.log("isn'tArray");
+  save(type: string) {
+    var source: any = this.formMain.value;
+    this.questionService.saveSource(source, type).subscribe(
+      () => {
+        this.updateTable(type);
+      }
+    );
+  }
+
+  saveAll(type: string) {
+    var source = this.formMain.value;
+    let listInsert = [];
+    if (source[type].indexOf(',') !== -1) {
+      let listSource = source[type].split(',');
+      listSource.forEach(element => {
+        listInsert.push({ id: null, [type]: element });
+      });
     }
-    // this.questionService.saveSource(source, type).subscribe(
-    //   el => {
-    //     console.log(`Save ->`, source);
-    //     console.log(`To -> `,el);
-    //     this.updateTable(type);
-    //   }
-    // );  
+    console.log(listInsert);
+    this.questionService.saveAllSource(listInsert, type).subscribe(
+      () => {
+        this.updateTable(type);
+      }
+    );
   }
 
   updateItem(type: string) {
-    console.log(this.formMain);
     let source = this.formMain.value;
     this.questionService.updateSource(source, type).subscribe(
-      el => {
-        console.log(`Update ${type}`, source);
-        console.log(`To -> `,el);
+      () => {
         this.updateTable(type);
       }
-        
-    );    
-    
+    );
+
   }
 
   deleteItem(source: any, type: string) {
@@ -167,15 +171,8 @@ export class CadQuestionsComponent implements OnInit {
         console.log(`Delete ${type}`, source);
         this.updateTable(type);
       }
-        
-    )
-    // listOfNiveis: Nivel[];
-    // listOfAnos: Ano[];
-    // listOfDisciplina: Disciplina[];
-    // listOfBanca: Banca[];
-    // listOfInstituicao: Instituicao[];
-    console.log(source);
-    
+
+    );
   }
 
   updateTable(type: string) {
@@ -198,7 +195,7 @@ export class CadQuestionsComponent implements OnInit {
         break;
       case 'disciplina':
         this.questionService.selectSource(type).subscribe(
-          el =>{
+          el => {
             this.listOfDisciplina = el.content
             window.location.reload();
           }
@@ -214,7 +211,7 @@ export class CadQuestionsComponent implements OnInit {
         break;
       case 'instituicao':
         this.questionService.selectSource(type).subscribe(
-          el =>{
+          el => {
             this.listOfInstituicao = el.content
             window.location.reload();
           }

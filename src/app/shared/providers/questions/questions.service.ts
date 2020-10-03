@@ -57,6 +57,16 @@ export class QuestionsService {
       )
   }
 
+  saveAllSource(source: any, type: string){
+    let body = JSON.stringify(source);
+    console.log(body);
+    return this.http.post<any>(`${urlApi}/${type}/all`, body, this.httpOptions)
+      .pipe(
+        take(1),
+        catchError(this.handleError<any>('Save - ', source))
+      )
+  }
+
   selectNiveis(page = 0, size = 10): Observable<PageOf> {
     return this.http.get<PageOf>(`${urlApi}/nivel?page=${page}&size=${size}`)
       .pipe(
