@@ -63,3 +63,15 @@ export class NiveisQuestionResolver implements Resolve<Nivel> {
     return this.service.selectSource('nivel');
   }
 }
+
+@Injectable({ providedIn: 'root' })
+export class QuestionsResolver implements Resolve<Nivel> {
+  constructor(private service: QuestionsService) { }
+
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> | Promise<any> | any {
+    return this.service.selectSource('questao');
+  }
+}

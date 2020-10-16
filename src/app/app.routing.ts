@@ -10,7 +10,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { CadQuestionsComponent } from './questions/cad-questions/cad-questions.component';
-import { AnoQuestionResolver, BancaQuestionResolver, DisciplinaQuestionResolver, InstituicaoQuestionResolver, NiveisQuestionResolver } from './shared/providers/questions/data-question.resolve';
+import { AnoQuestionResolver, BancaQuestionResolver, DisciplinaQuestionResolver, InstituicaoQuestionResolver, NiveisQuestionResolver, QuestionsResolver } from './shared/providers/questions/data-question.resolve';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,6 +24,7 @@ const routes: Routes = [
     path: 'cad-questions',
     component: CadQuestionsComponent,
     resolve: { 
+      questoes: QuestionsResolver, 
       ano: AnoQuestionResolver, 
       banca: BancaQuestionResolver,
       inst: InstituicaoQuestionResolver, 
