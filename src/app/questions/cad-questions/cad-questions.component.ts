@@ -1,5 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { Ano, Banca, Instituicao, Disciplina, Nivel } from 'src/app/shared/models/question.model';
+import { Ano, Banca, Instituicao, Disciplina, Nivel, Questao } from 'src/app/shared/models/question.model';
 import { QuestionsService } from 'src/app/shared/providers/questions/questions.service';
 import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -14,6 +14,7 @@ export class CadQuestionsComponent implements OnInit {
 
   formMain: FormGroup;
 
+  listOfQuestions: Questao[];
   listOfNiveis: Nivel[];
   listOfAnos: Ano[];
   listOfDisciplina: Disciplina[];
@@ -38,6 +39,8 @@ export class CadQuestionsComponent implements OnInit {
     this.listOfDisciplina = this.activeReoute.snapshot.data.disc.content;
     this.listOfBanca = this.activeReoute.snapshot.data.banca.content;
     this.listOfInstituicao = this.activeReoute.snapshot.data.inst.content;
+    this.listOfQuestions = this.activeReoute.snapshot.data.questoes.content;
+    console.log(this.listOfQuestions);
   }
 
   ngOnInit(): void {

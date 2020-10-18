@@ -18,3 +18,20 @@ export interface Nivel {
  id: number;
  nivel: string;
 }
+
+export interface Item {
+  item: string;
+  valor: string;
+}
+
+export interface Questao {
+  id: number;
+  ano: Ano;
+  banca: Banca;
+  instituicao: Instituicao;
+  disciplina: Disciplina;
+  nivel: Nivel;
+  itens: Item[];
+  questao: string;
+  reposta: Item;
+}
