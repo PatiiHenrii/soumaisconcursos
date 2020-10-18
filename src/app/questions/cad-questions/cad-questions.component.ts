@@ -2,7 +2,7 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Ano, Banca, Instituicao, Disciplina, Nivel, Questao } from 'src/app/shared/models/question.model';
 import { QuestionsService } from 'src/app/shared/providers/questions/questions.service';
 import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -33,7 +33,7 @@ export class CadQuestionsComponent implements OnInit {
     private activeReoute: ActivatedRoute
   ) {
     config.backdrop = 'static';
-    console.log(this.activeReoute.snapshot.data);
+    
     this.listOfNiveis = this.activeReoute.snapshot.data.nivel.content;
     this.listOfAnos = this.activeReoute.snapshot.data.ano.content;
     this.listOfDisciplina = this.activeReoute.snapshot.data.disc.content;
@@ -110,9 +110,22 @@ export class CadQuestionsComponent implements OnInit {
     });
   }
 
-  open(content, edit, type, modalType) {
+  builderFormQuestao(formDatas: Questao) {
+    this.formMain = this.fb.group({
+      id: formDatas && formDatas.id ? formDatas.id : null,
+      nivel: formDatas && formDatas.nivel ? formDatas.nivel : '',
+      // ano: formDatas && formDatas.ano ? formDatas.ano : '',
+      // disciplina: formDatas && formDatas.disciplina ? formDatas.disciplina : '',
+      // banca: formDatas && formDatas.banca ? formDatas.banca : '',
+      // instituicao: formDatas && formDatas.instituicao ? formDatas.instituicao : '',
+      // questao: formDatas && formDatas.questao ? formDatas.questao : '',
+      // itens: formDatas && formDatas.itens ? formDatas.itens : new FormArray([]),
+      // resposta: formDatas && formDatas.reposta ? formDatas.reposta : ''
+    });
+  }
 
-    console.log(modalType)
+  open(content, edit, type, modalType) {
+    
     let config = { windowClass: 'modal-mini', size: 'md', centered: true };
     if (modalType === 'notify') {
       config.windowClass = 'modal-danger';
@@ -123,6 +136,26 @@ export class CadQuestionsComponent implements OnInit {
     this.sourceShow = edit;
 
     this.builderForm(type, edit);
+
+    this.modalService.open(content, config).result.then((result) => {
+      console.log(`Closed with: ${result}`);
+    }, (reason) => {
+      console.log(`Dismissed ${this.getDismissReason(reason)}`);
+    });
+  }
+
+  openQuestao(content, edit, type, modalType) {
+    
+    let config = { windowClass: 'modal-mini', size: 'md', centered: true };
+    if (modalType === 'notify') {
+      config.windowClass = 'modal-danger';
+      config.size = 'sm';
+    }
+
+    this.sourceType = type;
+    this.sourceShow = edit;
+
+    this.builderFormQuestao(edit);
 
     this.modalService.open(content, config).result.then((result) => {
       console.log(`Closed with: ${result}`);
@@ -223,27 +256,27 @@ export class CadQuestionsComponent implements OnInit {
     }
   }
 
-  delNivel(nivel: Nivel) {
+  private delNivel(nivel: Nivel) {
     console.log("Delete nivel");
     this.questionService;
   }
 
-  delAno(ano: Ano) {
+  private delAno(ano: Ano) {
     console.log("Delete ano");
     this.questionService;
   }
 
-  delDisc(disciplina: Disciplina) {
+  private delDisc(disciplina: Disciplina) {
     console.log("Delete disciplina");
     this.questionService;
   }
 
-  delBanca(banca: Banca) {
+  private delBanca(banca: Banca) {
     console.log("Delete banca");
     this.questionService;
   }
 
-  delInst(instituicao: Instituicao) {
+  private delInst(instituicao: Instituicao) {
     console.log("Delete instituicao");
     this.questionService;
   }
