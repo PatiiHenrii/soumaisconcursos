@@ -321,11 +321,80 @@
         </div>
         <div class="modal-body">
             <form role="form" [formGroup]=formMain>
-                <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                    <div class="input-group input-group-alternative">
-                        <input class="form-control" placeholder="Novo valor" type="text" (focus)="focus=true"
-                            (blur)="focus=false" formControlName="nivel">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="questaoNivel">Nivel</label>
+                        <select id="questaoNivel" formControlName="nivel" class="form-control">
+                            <option *ngFor="let iNivel of listOfNiveis" value="{{iNivel.id}}">{{iNivel.nivel}}</option>
+                        </select>
                     </div>
+                    <div class="form-group col-md-4">
+                        <label for="questaoAno">Ano</label>
+                        <select id="questaoAno" formControlName="ano" class="form-control">
+                            <option *ngFor="let iAno of listOfAnos" value="{{iAno.id}}">{{iAno.ano}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="questaoBanca">Banca</label>
+                        <select id="questaoBanca" formControlName="banca" class="form-control">
+                            <option *ngFor="let iBanca of listOfBanca" value="{{iBanca.id}}">{{iBanca.banca}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="questaoInst">Instituiçao</label>
+                        <select id="questaoInst" formControlName="instituicao" class="form-control">
+                            <option *ngFor="let iInst of listOfInstituicao" value="{{iInst.id}}">{{iInst.instituicao}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="questaoDisc">Disciplina</label>
+                        <select id="questaoDisc" formControlName="disciplina" class="form-control">
+                            <option *ngFor="let iDisc of listOfDisciplina" value="{{iDisc.id}}">{{iDisc.disciplina}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="questao">Questão</label>
+                        <textarea id="questao" formControlName="questao" class="form-control">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <label for="questao">Lista de itens</label>
+                        <div class="form-row">
+                            <div class="form-group col-md-10">
+                                <div formArrayName="itens" *ngFor="let item of formMain.get('itens').controls; let i=index">
+                                    <div [formGroupName]="i" class="form-row mb-2">
+                                        <div class="col-md-4">
+                                            <input class="form-control" type="text" formControlName="item" placeholder="Item">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" formControlName="valor" placeholder="Valor">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-sm btn-primary" type="button" (click)="addItem()">
+                                    <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+                                </button>
+                                <button class="btn btn-sm btn-primary" type="button" (click)="removeItem()">
+                                    <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="resposta">Resposta</label>
+                        <select id="resposta" class="form-control" formControlName="resposta">
+                            <option *ngFor="let item of listOfResposta; let i=index" value=0>{{item.item}} - {{item.valor}}</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" (click)="saveQuestao()">Cadastrar</button>
                 </div>
             </form>
         </div>

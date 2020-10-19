@@ -1,5 +1,5 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { Ano, Banca, Instituicao, Disciplina, Nivel, Questao } from 'src/app/shared/models/question.model';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Ano, Banca, Instituicao, Disciplina, Nivel, Questao, Item } from 'src/app/shared/models/question.model';
 import { QuestionsService } from 'src/app/shared/providers/questions/questions.service';
 import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
@@ -20,6 +20,8 @@ export class CadQuestionsComponent implements OnInit {
   listOfDisciplina: Disciplina[];
   listOfBanca: Banca[];
   listOfInstituicao: Instituicao[];
+  listOfItens: Item[];
+  listOfResposta = [];
   tabsToShow: any;
 
   sourceType: string;
@@ -33,7 +35,7 @@ export class CadQuestionsComponent implements OnInit {
     private activeReoute: ActivatedRoute
   ) {
     config.backdrop = 'static';
-    
+
     this.listOfNiveis = this.activeReoute.snapshot.data.nivel.content;
     this.listOfAnos = this.activeReoute.snapshot.data.ano.content;
     this.listOfDisciplina = this.activeReoute.snapshot.data.disc.content;
@@ -44,11 +46,6 @@ export class CadQuestionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getListOfAnos();
-    // this.getListOfBancas();
-    // this.getListOfDisciplina();
-    // this.getListOfInstituicao();
-
     this.tabsToShow = [
       { title: 'Nivel', type: 'nivel', dataToList: this.listOfNiveis },
       { title: 'Ano', type: 'ano', dataToList: this.listOfAnos },
@@ -103,6 +100,22 @@ export class CadQuestionsComponent implements OnInit {
     )
   }
 
+  get itensArray() {
+    return this.formMain.get('itens') as FormArray;
+  }
+  createItem(): FormGroup {
+    return this.fb.group({
+      item: '',
+      valor: ''
+    });
+  }
+  addItem() {
+    this.itensArray.push(this.createItem());
+  }
+  removeItem() {
+    this.itensArray.removeAt(this.itensArray.length - 1);
+  }
+
   builderForm(type: string, formDatas: any) {
     this.formMain = this.fb.group({
       id: formDatas && formDatas.id ? formDatas.id : null,
@@ -114,18 +127,19 @@ export class CadQuestionsComponent implements OnInit {
     this.formMain = this.fb.group({
       id: formDatas && formDatas.id ? formDatas.id : null,
       nivel: formDatas && formDatas.nivel ? formDatas.nivel : '',
-      // ano: formDatas && formDatas.ano ? formDatas.ano : '',
-      // disciplina: formDatas && formDatas.disciplina ? formDatas.disciplina : '',
-      // banca: formDatas && formDatas.banca ? formDatas.banca : '',
-      // instituicao: formDatas && formDatas.instituicao ? formDatas.instituicao : '',
-      // questao: formDatas && formDatas.questao ? formDatas.questao : '',
-      // itens: formDatas && formDatas.itens ? formDatas.itens : new FormArray([]),
-      // resposta: formDatas && formDatas.reposta ? formDatas.reposta : ''
+      ano: formDatas && formDatas.ano ? formDatas.ano : '',
+      disciplina: formDatas && formDatas.disciplina ? formDatas.disciplina : '',
+      banca: formDatas && formDatas.banca ? formDatas.banca : '',
+      instituicao: formDatas && formDatas.instituicao ? formDatas.instituicao : '',
+      questao: formDatas && formDatas.questao ? formDatas.questao : '',
+      itens: formDatas && formDatas.itens ? this.fb.array(formDatas.itens) : this.fb.array([this.createItem()]),
+      resposta: formDatas && formDatas.reposta ? formDatas.reposta : ''
     });
+    this.changeListItens();
   }
 
   open(content, edit, type, modalType) {
-    
+
     let config = { windowClass: 'modal-mini', size: 'md', centered: true };
     if (modalType === 'notify') {
       config.windowClass = 'modal-danger';
@@ -144,13 +158,9 @@ export class CadQuestionsComponent implements OnInit {
     });
   }
 
-  openQuestao(content, edit, type, modalType) {
-    
-    let config = { windowClass: 'modal-mini', size: 'md', centered: true };
-    if (modalType === 'notify') {
-      config.windowClass = 'modal-danger';
-      config.size = 'sm';
-    }
+  openQuestao(content, edit, type) {
+
+    let config = { windowClass: 'modal-mini', size: 'lg', centered: true };
 
     this.sourceType = type;
     this.sourceShow = edit;
@@ -162,6 +172,16 @@ export class CadQuestionsComponent implements OnInit {
     }, (reason) => {
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
     });
+  }
+
+  saveQuestao() {
+    console.log(this.formMain.value);
+  }
+
+  changeListItens() {
+    this.formMain.get('itens').valueChanges.subscribe(
+      el => this.listOfResposta = el
+    )
   }
 
   save(type: string) {
