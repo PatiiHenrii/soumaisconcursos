@@ -12,8 +12,7 @@
         </div>
         <!-- SVG separator -->
         <div class="separator separator-bottom separator-skew">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
             </svg>
         </div>
@@ -35,8 +34,7 @@
                                         <thead>
                                             <tr class="row m-0">
                                                 <th scope="col" class="col-2 d-flex justify-content-center">
-                                                    <button class="btn btn-sm btn-primary" type="button"
-                                                        (click)="openQuestao(question)">
+                                                    <button class="btn btn-sm btn-primary" type="button" (click)="openQuestao(question)">
                                                         <span class="btn-inner--text mr-1">Novo</span>
                                                         <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                                                     </button>
@@ -52,12 +50,10 @@
                                         <tbody>
                                             <tr class="row m-0">
                                                 <td class="col-2 d-flex justify-content-around">
-                                                    <button class="btn btn-sm btn-primary" type="button"
-                                                        (click)="open(question, question)">
+                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(question, question)">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </button>
-                                                    <button class="btn btn-sm btn-primary" type="button"
-                                                        (click)="open(question, question)">
+                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(question, question)">
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                                     </button>
                                                 </td>
@@ -81,13 +77,11 @@
                                         <thead>
                                             <tr class="row m-0">
                                                 <th scope="col" class="col-3 d-flex justify-content-center">
-                                                    <button class="btn btn-sm btn-primary" type="button"
-                                                        (click)="open(edit, data, tab.type, 'form')">
+                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(edit, data, tab.type, 'form')">
                                                         <span class="btn-inner--text mr-1">Novo</span>
                                                         <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-primary" type="button"
-                                                        (click)="open(editAll, data, tab.type, 'form')">
+                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(editAll, data, tab.type, 'form')">
                                                         <span class="btn-inner--text mr-1">Varios</span>
                                                         <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                                                     </button>
@@ -100,12 +94,10 @@
                                         <tbody>
                                             <tr *ngFor="let data of tab.dataToList" class="row m-0">
                                                 <td class="col-3 d-flex justify-content-around">
-                                                    <button class="btn btn-sm btn-primary" type="button"
-                                                        (click)="open(edit, data, tab.type, 'form')">
+                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(edit, data, tab.type, 'form')">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </button>
-                                                    <button class="btn btn-sm btn-primary" type="button"
-                                                        (click)="open(delete, data, tab.type, 'notify')">
+                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(delete, data, tab.type, 'notify')">
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                                     </button>
                                                 </td>
@@ -325,19 +317,19 @@
                     <div class="form-group col-md-4">
                         <label for="questaoNivel">Nivel</label>
                         <select id="questaoNivel" formControlName="nivel" class="form-control">
-                            <option *ngFor="let iNivel of listOfNiveis" value="{{iNivel.id}}">{{iNivel.nivel}}</option>
+                            <option *ngFor="let iNivel of listOfNiveis" [value]="iNivel.id">{{iNivel.nivel}}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="questaoAno">Ano</label>
                         <select id="questaoAno" formControlName="ano" class="form-control">
-                            <option *ngFor="let iAno of listOfAnos" value="{{iAno.id}}">{{iAno.ano}}</option>
+                            <option *ngFor="let iAno of listOfAnos" value={{iAno.id}}>{{iAno.ano}}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="questaoBanca">Banca</label>
                         <select id="questaoBanca" formControlName="banca" class="form-control">
-                            <option *ngFor="let iBanca of listOfBanca" value="{{iBanca.id}}">{{iBanca.banca}}</option>
+                            <option *ngFor="let iBanca of listOfBanca" value={{iBanca.id}}>{{iBanca.banca}}</option>
                         </select>
                     </div>
                 </div>
@@ -345,14 +337,14 @@
                     <div class="form-group col-md-6">
                         <label for="questaoInst">Instituiçao</label>
                         <select id="questaoInst" formControlName="instituicao" class="form-control">
-                            <option *ngFor="let iInst of listOfInstituicao" value="{{iInst.id}}">{{iInst.instituicao}}
+                            <option *ngFor="let iInst of listOfInstituicao" value={{iInst.id}}>{{iInst.instituicao}}
                             </option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="questaoDisc">Disciplina</label>
                         <select id="questaoDisc" formControlName="disciplina" class="form-control">
-                            <option *ngFor="let iDisc of listOfDisciplina" value="{{iDisc.id}}">{{iDisc.disciplina}}
+                            <option *ngFor="let iDisc of listOfDisciplina" value={{iDisc.id}}>{{iDisc.disciplina}}
                             </option>
                         </select>
                     </div>
@@ -388,13 +380,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-12">
+                    <!-- <div class="form-group col-md-12">
                         <label for="resposta">Resposta</label>
                         <select id="resposta" class="form-control" formControlName="resposta">
-                            <option *ngFor="let item of listOfResposta; let i=index" value=0>{{item.item}} - {{item.valor}}</option>
+                            <option *ngFor="let item of listOfResposta; let i=index" value={{item}}>{{item.item}} - {{item.valor}}</option>
                         </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary" (click)="saveQuestao()">Cadastrar</button>
+                    </div> -->
+                    <button type="submit" class="btn btn-primary" (click)="save('questao')">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -416,11 +408,9 @@
             <form role="form" [formGroup]=formMain>
                 <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                     <div class="input-group input-group-alternative">
-                        <input class="form-control" placeholder="Novo valor" type="text" (focus)="focus=true"
-                            (blur)="focus=false" [formControlName]="sourceType">
+                        <input class="form-control" placeholder="Novo valor" type="text" (focus)="focus=true" (blur)="focus=false" [formControlName]="sourceType">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-primary"
-                                (click)="sourceShow ? updateItem(sourceType) : save(sourceType)">Salvar</button>
+                            <button type="button" class="btn btn-primary" (click)="sourceShow ? updateItem(sourceType) : save(sourceType)">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -441,8 +431,7 @@
             <form role="form" [formGroup]=formMain>
                 <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                     <div class="input-group input-group-alternative">
-                        <textarea class="form-control" placeholder="valor1,valor2...." (focus)="focus=true"
-                            (blur)="focus=false" [formControlName]="sourceType">
+                        <textarea class="form-control" placeholder="valor1,valor2...." (focus)="focus=true" (blur)="focus=false" [formControlName]="sourceType">
                         </textarea>
 
                     </div>
@@ -471,10 +460,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-white"
-                (click)="deleteItem(sourceShow, sourceType); c('Close click')">Apagar</button>
-            <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal"
-                (click)="c('Close click')">Fechar</button>
+            <button type="button" class="btn btn-white" (click)="deleteItem(sourceShow, sourceType); c('Close click')">Apagar</button>
+            <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="c('Close click')">Fechar</button>
         </div>
     </div>
 </ng-template>

@@ -126,14 +126,14 @@ export class CadQuestionsComponent implements OnInit {
   builderFormQuestao(formDatas: Questao) {
     this.formMain = this.fb.group({
       id: formDatas && formDatas.id ? formDatas.id : null,
-      nivel: formDatas && formDatas.nivel ? formDatas.nivel : '',
-      ano: formDatas && formDatas.ano ? formDatas.ano : '',
-      disciplina: formDatas && formDatas.disciplina ? formDatas.disciplina : '',
-      banca: formDatas && formDatas.banca ? formDatas.banca : '',
-      instituicao: formDatas && formDatas.instituicao ? formDatas.instituicao : '',
+      nivel: formDatas && formDatas.nivel ? formDatas.nivel : null,
+      ano: formDatas && formDatas.ano ? formDatas.ano : null,
+      disciplina: formDatas && formDatas.disciplina ? formDatas.disciplina : null,
+      banca: formDatas && formDatas.banca ? formDatas.banca : null,
+      instituicao: formDatas && formDatas.instituicao ? formDatas.instituicao : null,
       questao: formDatas && formDatas.questao ? formDatas.questao : '',
       itens: formDatas && formDatas.itens ? this.fb.array(formDatas.itens) : this.fb.array([this.createItem()]),
-      resposta: formDatas && formDatas.reposta ? formDatas.reposta : ''
+      resposta: formDatas && formDatas.reposta ? formDatas.reposta : null
     });
     this.changeListItens();
   }
@@ -185,7 +185,14 @@ export class CadQuestionsComponent implements OnInit {
   }
 
   save(type: string) {
+    this.formMain.get('nivel').setValue(parseInt(this.formMain.get('nivel').value));
+    this.formMain.get('ano').setValue(parseInt(this.formMain.get('ano').value));
+    this.formMain.get('disciplina').setValue(parseInt(this.formMain.get('disciplina').value));
+    this.formMain.get('banca').setValue(parseInt(this.formMain.get('banca').value));
+    this.formMain.get('instituicao').setValue(parseInt(this.formMain.get('instituicao').value));
     var source: any = this.formMain.value;
+    
+    console.log(source);
     this.questionService.saveSource(source, type).subscribe(
       () => {
         this.updateTable(type);
