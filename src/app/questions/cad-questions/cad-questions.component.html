@@ -48,7 +48,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="row m-0">
+                                            <tr *ngFor="let questao of listOfQuestions" class="row m-0">
                                                 <td class="col-2 d-flex justify-content-around">
                                                     <button class="btn btn-sm btn-primary" type="button" (click)="open(question, question)">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -57,12 +57,12 @@
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                                     </button>
                                                 </td>
-                                                <td class="col-1">-</td>
-                                                <td class="col-1">-</td>
-                                                <td class="col-2">-</td>
-                                                <td class="col-2">-</td>
-                                                <td class="col-2">-</td>
-                                                <td class="col-2">-</td>
+                                                <td class="col-1">{{questao.codigo}}</td>
+                                                <td class="col-1">{{questao.ano ? questao.ano.ano : '-'}}</td>
+                                                <td class="col-1">{{questao.nivel ? questao.nivel.nivel : '-'}}</td>
+                                                <td class="col-2">{{questao.disciplina ? questao.disciplina.disciplina : '-'}}</td>
+                                                <td class="col-2">{{questao.banca ? questao.banca.banca : '-'}}</td>
+                                                <td class="col-2">{{questao.instituicao ? questao.instituicao.instituicao : '-'}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -316,35 +316,36 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="questaoNivel">Nivel</label>
-                        <select id="questaoNivel" formControlName="nivel" class="form-control">
-                            <option *ngFor="let iNivel of listOfNiveis" [value]="iNivel.id">{{iNivel.nivel}}</option>
+                        <select id="questaoNivel" [formControl]="formMain.get('nivel').get('nivel')" class="form-control">
+                            <option *ngFor="let iNivel of listOfNiveis" [value]="iNivel.nivel">{{iNivel.nivel}}
+                            </option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="questaoAno">Ano</label>
-                        <select id="questaoAno" formControlName="ano" class="form-control">
-                            <option *ngFor="let iAno of listOfAnos" value={{iAno.id}}>{{iAno.ano}}</option>
+                        <select id="questaoAno" [formControl]="formMain.get('ano').get('ano')" class="form-control">
+                            <option *ngFor="let iAno of listOfAnos" [value]=iAno.ano>{{iAno.ano}}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="questaoBanca">Banca</label>
-                        <select id="questaoBanca" formControlName="banca" class="form-control">
-                            <option *ngFor="let iBanca of listOfBanca" value={{iBanca.id}}>{{iBanca.banca}}</option>
+                        <select id="questaoBanca" [formControl]="formMain.get('banca').get('banca')" class="form-control">
+                            <option *ngFor="let iBanca of listOfBanca" [value]=iBanca.banca>{{iBanca.banca}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="questaoInst">Instituiçao</label>
-                        <select id="questaoInst" formControlName="instituicao" class="form-control">
-                            <option *ngFor="let iInst of listOfInstituicao" value={{iInst.id}}>{{iInst.instituicao}}
+                        <select id="questaoInst" [formControl]="formMain.get('instituicao').get('instituicao')" class="form-control">
+                            <option *ngFor="let iInst of listOfInstituicao" [value]=iInst.instituicao>{{iInst.instituicao}}
                             </option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="questaoDisc">Disciplina</label>
-                        <select id="questaoDisc" formControlName="disciplina" class="form-control">
-                            <option *ngFor="let iDisc of listOfDisciplina" value={{iDisc.id}}>{{iDisc.disciplina}}
+                        <select id="questaoDisc" [formControl]="formMain.get('disciplina').get('disciplina')" class="form-control">
+                            <option *ngFor="let iDisc of listOfDisciplina" [value]=iDisc.disciplina>{{iDisc.disciplina}}
                             </option>
                         </select>
                     </div>
@@ -375,17 +376,17 @@
                                     <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                                 </button>
                                 <button class="btn btn-sm btn-primary" type="button" (click)="removeItem()">
-                                    <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+                                    <span class="btn-inner--icon"><i class="fa fa-minus"></i></span>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="form-group col-md-12">
+                    <div class="form-group col-md-12">
                         <label for="resposta">Resposta</label>
-                        <select id="resposta" class="form-control" formControlName="resposta">
-                            <option *ngFor="let item of listOfResposta; let i=index" value={{item}}>{{item.item}} - {{item.valor}}</option>
+                        <select id="resposta" class="form-control" [formControl]="formMain.get('resposta').get('valor')">
+                            <option *ngFor="let item of listOfResposta; let i=index" [value]=item.valor>{{item.item}} - {{item.valor}}</option>
                         </select>
-                    </div> -->
+                    </div>
                     <button type="submit" class="btn btn-primary" (click)="save('questao')">Cadastrar</button>
                 </div>
             </form>

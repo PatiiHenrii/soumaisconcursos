@@ -103,10 +103,10 @@ export class CadQuestionsComponent implements OnInit {
   get itensArray() {
     return this.formMain.get('itens') as FormArray;
   }
-  createItem(): FormGroup {
+  createItem(item?: Item): FormGroup {
     return this.fb.group({
-      item: '',
-      valor: ''
+      item: item ? item : '',
+      valor: item ? item : ''
     });
   }
   addItem() {
@@ -124,18 +124,26 @@ export class CadQuestionsComponent implements OnInit {
   }
 
   builderFormQuestao(formDatas: Questao) {
+    console.log(formDatas);
     this.formMain = this.fb.group({
       id: formDatas && formDatas.id ? formDatas.id : null,
-      nivel: formDatas && formDatas.nivel ? formDatas.nivel : null,
-      ano: formDatas && formDatas.ano ? formDatas.ano : null,
-      disciplina: formDatas && formDatas.disciplina ? formDatas.disciplina : null,
-      banca: formDatas && formDatas.banca ? formDatas.banca : null,
-      instituicao: formDatas && formDatas.instituicao ? formDatas.instituicao : null,
+      nivel: this.buildFormSource('nivel', formDatas && formDatas.nivel ? formDatas.nivel : null),
+      ano: this.buildFormSource('ano', formDatas && formDatas.ano ? formDatas.ano : null),
+      disciplina: this.buildFormSource('disciplina', formDatas && formDatas.disciplina ? formDatas.disciplina : null),
+      banca: this.buildFormSource('banca', formDatas && formDatas.banca ? formDatas.banca : null),
+      instituicao: this.buildFormSource('instituicao', formDatas && formDatas.instituicao ? formDatas.instituicao : null),
       questao: formDatas && formDatas.questao ? formDatas.questao : '',
       itens: formDatas && formDatas.itens ? this.fb.array(formDatas.itens) : this.fb.array([this.createItem()]),
-      resposta: formDatas && formDatas.reposta ? formDatas.reposta : null
+      resposta: this.createItem(formDatas && formDatas.reposta ? formDatas.reposta : null)
     });
     this.changeListItens();
+  }
+
+  private buildFormSource(type: string, source?: any): FormGroup {
+    return this.fb.group({
+      id: [source ? source.id : null] ,
+      [type]: [ source ? source[type] : "" ]
+    });
   }
 
   open(content, edit, type, modalType) {
@@ -184,12 +192,15 @@ export class CadQuestionsComponent implements OnInit {
     )
   }
 
+  public changeSource(type: string, source: any) {
+    console.log(source)
+    this.formMain.get(type).get('id').setValue(source.id);
+    console.log(this.formMain.get(type).value);
+  }
+
   save(type: string) {
-    this.formMain.get('nivel').setValue(parseInt(this.formMain.get('nivel').value));
-    this.formMain.get('ano').setValue(parseInt(this.formMain.get('ano').value));
-    this.formMain.get('disciplina').setValue(parseInt(this.formMain.get('disciplina').value));
-    this.formMain.get('banca').setValue(parseInt(this.formMain.get('banca').value));
-    this.formMain.get('instituicao').setValue(parseInt(this.formMain.get('instituicao').value));
+    console.log(this.listOfNiveis);
+    // this.setNivel();
     var source: any = this.formMain.value;
     
     console.log(source);
@@ -234,7 +245,6 @@ export class CadQuestionsComponent implements OnInit {
         console.log(`Delete ${type}`, source);
         this.updateTable(type);
       }
-
     );
   }
 
@@ -316,5 +326,16 @@ export class CadQuestionsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  private setNivel() {
+    this.listOfNiveis.forEach(el => {
+      console.log(el.id)
+      console.log(this.formMain.get('nivel').get('id').value);
+      if(el.id === parseInt(this.formMain.get('nivel').get('id').value)){
+        console.log(el.nivel)
+        this.formMain.get('nivel').get('nivel').setValue(el.nivel);
+      }
+    });
   }
 }
