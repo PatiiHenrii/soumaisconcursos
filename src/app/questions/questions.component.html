@@ -22,67 +22,99 @@
         <div class="container">
             <div class="card card-profile shadow mt--450">
                 <section class="section pb-0 section-components pt-2">
-                    <div class="container mb-5">
+                    <div class="mb-5">
                         <!-- Inputs -->
-                        <h3 class="mb-3 mt-3">Questões</h3>
-                        <div class="mb-3">
-                            <small class="text-uppercase font-weight-bold">Foram encontradas mais de 100
-                                questões</small>
+                        <div class="container">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb bg-white p-0">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                                </ol>
+                            </nav>
+                            <h3 class="mb-3 mt-3">Questões</h3>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-4">
-                                        <input type="text" class="form-control" (change)="searchBy('ano')"
-                                            [(ngModel)]="ano" [ngbTypeahead]="searchAno" placeholder="Ano da questão..."
-                                            [editable]='false' />
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+
+                        <div class="container py-5 bg-secondary">
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group mb-4">
+                                            <input type="text" class="form-control" (change)="searchBy('ano')"
+                                                [(ngModel)]="ano" [ngbTypeahead]="searchAno" [resultTemplate]="tmpAno"
+                                                [inputFormatter]="formatter" placeholder="Ano da questão..."
+                                                [editable]='false' [focusFirst]='true' />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="ni ni-zoom-split-in"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group mb-4">
+                                            <input type="text" class="form-control" (change)="searchBy('banca')"
+                                                [ngbTypeahead]="searchBanca" placeholder="Search" [editable]='false'
+                                                [focusFirst]='true' />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i
+                                                        class="ni ni-zoom-split-in"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group mb-4">
+                                            <input type="text" class="form-control" (change)="searchBy('disciplina')"
+                                                [ngbTypeahead]="searchDisciplina" placeholder="Search"
+                                                [editable]='false' />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i
+                                                        class="ni ni-zoom-split-in"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group mb-4">
+                                            <input type="text" class="form-control" (change)="searchBy('instituicao')"
+                                                [ngbTypeahead]="searchInstituicao" placeholder="Search"
+                                                [editable]='false' />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i
+                                                        class="ni ni-zoom-split-in"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-4">
-                                        <input type="text" class="form-control" (change)="searchBy('banca')"
-                                            [ngbTypeahead]="searchBanca" placeholder="Search" [editable]='false' />
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-4">
-                                        <input type="text" class="form-control" (change)="searchBy('disciplina')"
-                                            [ngbTypeahead]="searchDisciplina" placeholder="Search" [editable]='false' />
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="form-group">
-                                    <div class="input-group mb-4">
-                                        <input type="text" class="form-control" (change)="searchBy('instituicao')"
-                                            [ngbTypeahead]="searchInstituicao" placeholder="Search"
-                                            [editable]='false' />
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                                        </div>
+
+                            <div class="row align-self-center">
+                                <p class="ml-3 mr-3">Filtar por: </p>
+                                <div *ngIf="searchList.length > 0">
+                                    <div *ngFor="let search of searchList" class="d-flex flex-wrap">
+                                        <p *ngIf="search['ano'] && search['ano'].length > 0"
+                                            class="badge badge-primary m-0 mr-1" style="font-size: 80%;"> Ano
+                                            <span *ngFor="let item of search['ano']; let i = index"
+                                                class="badge badge-pill badge-light text-uppercase m-0 mr-1"
+                                                style="font-size: 100%;">
+                                                {{item.ano}}
+                                                <i class="fa fa-times-circle ml-1" (click)="remove('ano', i )"></i>
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row" *ngIf="searchList.length > 0">
-                            <span *ngFor="let search of searchList; let i = index">
-                                <span class="badge badge-pill badge-primary text-uppercase"
-                                    *ngFor="let item of search['ano']">{{item}}</span>
-                            </span>
+                        <div class="mb-3">
+                            <small class="text-uppercase font-weight-bold">
+                                Foram encontradas mais de 100 questões
+                            </small>
                         </div>
                     </div>
                 </section>
@@ -90,3 +122,8 @@
         </div>
     </section>
 </main>
+
+
+<ng-template #tmpAno let-r="result" let-t="term">
+    <ngb-highlight [result]="r.ano" [term]="t"></ngb-highlight>
+</ng-template>

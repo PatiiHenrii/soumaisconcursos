@@ -17,9 +17,19 @@ const routes: Routes = [
   { path: 'user-profile', component: ProfileComponent },
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'questions', component: QuestionsComponent },
   { path: 'plans', component: PlansComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { 
+    path: 'questions',
+    component: QuestionsComponent,
+    resolve: {
+      questoes: QuestionsResolver,
+      ano: AnoQuestionResolver, 
+      banca: BancaQuestionResolver,
+      inst: InstituicaoQuestionResolver, 
+      disc: DisciplinaQuestionResolver
+    }
+  },
   {
     path: 'cad-questions',
     component: CadQuestionsComponent,
