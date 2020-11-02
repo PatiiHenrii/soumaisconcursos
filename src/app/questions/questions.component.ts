@@ -3,8 +3,6 @@ import { Observable, Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
-const ano = ['2020', '2018', '2017', '2016', '2015', '2014', '2013', '2019', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1998', '1997', '1996', '1995', '1994'];
-
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
@@ -18,47 +16,66 @@ export class QuestionsComponent implements OnInit {
 
   focus$ = new Subject<string>();
 
-  ano: {id: number, ano: string};
-  anoList: [{id: number, ano: string}];
+  ano: { id: number, ano: string };
+  anoList: [{ id: number, ano: string }];
   anoToSearch = [];
 
-  banca: string;
-  bancaList = [];
+  banca: { id: number, banca: string };
+  bancaList: [{ id: number, banca: string }];
+  bancaToSearch = [];
 
-  disciplina: string;
-  disciplinaList = [];
+  disciplina: { id: number, disciplina: string };
+  disciplinaList: [{ id: number, disciplina: string }];
+  disciplinaToSearch = [];
 
-  instituicao: string;
-  instituicaoList = [];
+  instituicao: { id: number, instituicao: string };
+  instituicaoList: [{ id: number, instituicao: string }];
+  instituicaoToSearch = [];
 
-  searchList = [{ano: this.anoToSearch}, {banca: this.bancaList}, {disciplina: this.disciplinaList}, {instituicao: this.instituicaoList}];
+  questaoList: [any];
+
+  searchList = [{ ano: this.anoToSearch }, { banca: this.bancaToSearch }, { disciplina: this.disciplinaToSearch }, { instituicao: this.instituicaoToSearch }];
 
   constructor(
     private activateRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    console.log(this.activateRoute.snapshot.data);
     this.anoList = this.activateRoute.snapshot.data.ano.content;
+    this.bancaList = this.activateRoute.snapshot.data.banca.content;
+    this.disciplinaList = this.activateRoute.snapshot.data.disc.content;
+    this.instituicaoList = this.activateRoute.snapshot.data.inst.content;
+    this.questaoList = this.activateRoute.snapshot.data.questoes.content;
     console.log(this.anoList)
   }
 
   public searchBy(type: any) {
     console.log(type);
-    console.log(this.ano)
     switch (type) {
       case 'ano':
-        if(this.ano){
+        console.log(this.ano);
+        if (this.ano) {
           this.anoToSearch.push(this.ano);
         }
         break;
       case 'banca':
-        this.bancaList.push(this.banca);
+        console.log(this.banca);
+        if (this.banca) {
+          this.bancaToSearch.push(this.banca);
+        }
         break;
       case 'disciplina':
-        this.disciplinaList.push(this.disciplina);
+        console.log(this.disciplina);
+        if (this.disciplina) {
+          this.disciplinaToSearch.push(this.disciplina);
+        }
         break;
       case 'instituicao':
-        this.instituicaoList.push(this.instituicao);
+        console.log(this.instituicao);
+        if (this.instituicao) {
+          this.instituicaoToSearch.push(this.instituicao);
+        }
         break;
     }
     console.log(this.searchList);
@@ -71,13 +88,13 @@ export class QuestionsComponent implements OnInit {
         this.anoToSearch.splice(pos, 1);
         break;
       case 'banca':
-        this.bancaList.splice(pos, 1);
+        this.bancaToSearch.splice(pos, 1);
         break;
       case 'disciplina':
-        this.disciplinaList.splice(pos, 1);
+        this.disciplinaToSearch.splice(pos, 1);
         break;
       case 'instituicao':
-        this.instituicaoList.splice(pos, 1);
+        this.instituicaoToSearch.splice(pos, 1);
         break;
     }
   }
@@ -97,27 +114,30 @@ export class QuestionsComponent implements OnInit {
       distinctUntilChanged(),
       map(term =>
         term.length < 2 ? []
-          : ano.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+          : this.bancaList.filter(v => v.banca.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     );
 
-    searchDisciplina = (text$: Observable<string>) =>
+  searchDisciplina = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       map(term =>
         term.length < 2 ? []
-          : ano.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+          : this.disciplinaList.filter(v => v.disciplina.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     );
 
-    searchInstituicao = (text$: Observable<string>) =>
+  searchInstituicao = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       map(term =>
         term.length < 2 ? []
-          : ano.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+          : this.instituicaoList.filter(v => v.instituicao.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     );
 
-    formatter = (x: {ano: string}) => x.ano;
+  formatterAno = (x: { ano: string }) => x.ano;
+  formatterBan = (x: { banca: string }) => x.banca;
+  formatterIns = (x: { instituicao: string }) => x.instituicao;
+  formatterDis = (x: { disciplina: string }) => x.disciplina;
 
 }

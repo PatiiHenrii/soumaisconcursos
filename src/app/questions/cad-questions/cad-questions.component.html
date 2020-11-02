@@ -48,8 +48,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let questao of listOfQuestions" class="row m-0">
-                                                <td class="col-2 d-flex justify-content-around">
+                                            <tr *ngFor="let questao of listOfQuestions" class="row m-0" rowspan='2'>
+                                                <td class="col-2 d-flex align-items-center justify-content-around">
                                                     <button class="btn btn-sm btn-primary" type="button" (click)="open(question, question)">
                                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     </button>
@@ -59,7 +59,7 @@
                                                 </td>
                                                 <td class="col-1">{{questao.codigo}}</td>
                                                 <td class="col-1">{{questao.ano ? questao.ano.ano : '-'}}</td>
-                                                <td class="col-1">{{questao.nivel ? questao.nivel.nivel : '-'}}</td>
+                                                <td class="col-2">{{questao.nivel ? questao.nivel.nivel : '-'}}</td>
                                                 <td class="col-2">{{questao.disciplina ? questao.disciplina.disciplina : '-'}}</td>
                                                 <td class="col-2">{{questao.banca ? questao.banca.banca : '-'}}</td>
                                                 <td class="col-2">{{questao.instituicao ? questao.instituicao.instituicao : '-'}}</td>
