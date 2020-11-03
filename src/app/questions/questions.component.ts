@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { QuestionsService } from '../shared/providers/questions/questions.service';
 
 @Component({
   selector: 'app-questions',
@@ -13,6 +14,9 @@ export class QuestionsComponent implements OnInit {
   focus;
   focus1;
   focus5;
+  page = 0;
+  size = 10;
+  collectionSize: number;
 
   focus$ = new Subject<string>();
 
@@ -37,7 +41,8 @@ export class QuestionsComponent implements OnInit {
   searchList = [{ ano: this.anoToSearch }, { banca: this.bancaToSearch }, { disciplina: this.disciplinaToSearch }, { instituicao: this.instituicaoToSearch }];
 
   constructor(
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private serviceQuestion: QuestionsService
   ) { }
 
   ngOnInit(): void {
@@ -46,8 +51,23 @@ export class QuestionsComponent implements OnInit {
     this.bancaList = this.activateRoute.snapshot.data.banca.content;
     this.disciplinaList = this.activateRoute.snapshot.data.disc.content;
     this.instituicaoList = this.activateRoute.snapshot.data.inst.content;
-    this.questaoList = this.activateRoute.snapshot.data.questoes.content;
+    // this.questaoList = this.activateRoute.snapshot.data.questoes.content;
+    this.listQuestions();
     console.log(this.anoList)
+  }
+
+  public listQuestions() {
+    this.serviceQuestion.selectSource('questao', this.page, this.size)
+      .subscribe(
+        el => this.updateList(el)
+      )
+  }
+
+  private updateList(data: any) {
+    this.questaoList = data.content;
+    this.size = data.size;
+    this.page = data.number;
+    this.collectionSize = data.totalElements;
   }
 
   public searchBy(type: any) {
@@ -97,6 +117,12 @@ export class QuestionsComponent implements OnInit {
         this.instituicaoToSearch.splice(pos, 1);
         break;
     }
+  }
+
+  changePage(event: any){
+    console.log(event);
+    this.page = event;
+    this.listQuestions();
   }
 
   searchAno = (text$: Observable<string>) =>

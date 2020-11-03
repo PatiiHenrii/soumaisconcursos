@@ -142,12 +142,13 @@
                         </div>
 
                         <div class="container">
-                            <p class="text-uppercase font-weight-bold mb-2">
+                            <p class="text-uppercase font-weight-bold mb-2" *ngIf="questaoList">
                                 <small> Foram encontradas mais de {{questaoList.length}} questões</small>
                             </p>
                             <div class="column">
                                 <div *ngFor="let questao of questaoList">
-                                    <div class="d-flex flex-wrap border bg-secondary p-1">
+                                    <hr class="mt-3 mb-2" />
+                                    <div class="d-flex flex-wrap border bg-secondary p-1 mb-3">
                                         <small class="pr-2 border-right">
                                             <strong>{{questao.codigo}}</strong>
                                         </small>
@@ -161,7 +162,6 @@
                                             <strong>Instituição:</strong> {{questao.instituicao.instituicao}}
                                         </small>
                                     </div>
-                                    <hr class="mt-3 mb-3" />
                                     <p>{{questao.questao}}:</p>
                                     <div class="d-flex flex-row align-items-center mb-2" *ngFor="let item of questao.itens">
                                         <div class="pl-2 pr-2 rounded-circle border border-primary ml-4 text-uppercase text-primary">
@@ -200,6 +200,13 @@
                                     </ngb-tabset>
                                 </div>
                             </div>
+                            <nav aria-label="Page navigation example">
+                                <ngb-pagination class="d-flex justify-content-start" [collectionSize]="collectionSize"
+                                [(page)]="page" (pageChange)="changePage($event)">
+                                  <ng-template ngbPaginationPrevious><i _ngcontent-c9="" class="fa fa-angle-left"></i></ng-template>
+                                  <ng-template ngbPaginationNext><i _ngcontent-c9="" class="fa fa-angle-right"></i></ng-template>
+                                </ngb-pagination>
+                              </nav>
                         </div>
                     </div>
                 </section>
