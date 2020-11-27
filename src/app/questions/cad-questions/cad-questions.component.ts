@@ -332,7 +332,7 @@ export class CadQuestionsComponent implements OnInit {
     this.listOfNiveis.forEach(el => {
       console.log(el.id)
       console.log(this.formMain.get('nivel').get('id').value);
-      if(el.id === parseInt(this.formMain.get('nivel').get('id').value)){
+      if(el.id === parseInt(this.formMain.get('nivel').get('id').value)) {
         console.log(el.nivel)
         this.formMain.get('nivel').get('nivel').setValue(el.nivel);
       }
