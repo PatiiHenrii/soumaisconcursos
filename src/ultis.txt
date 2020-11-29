@@ -1,0 +1,66 @@
+  private getListOfNiveis() {
+    this.questionService.selectNiveis().subscribe(
+      el => {
+        console.log(el);
+        this.listOfNiveis = el.content;
+      }
+    )
+  }
+
+  private getListOfAnos() {
+    this.questionService.selectAnos().subscribe(
+      el => {
+        console.log(el);
+        this.listOfAnos = el.content;
+      }
+    )
+  }
+
+  private getListOfBancas() {
+    this.questionService.selectBancas().subscribe(
+      el => {
+        console.log(el);
+        this.listOfBanca = el.content;
+      }
+    )
+  }
+
+  private getListOfInstituicao() {
+    this.questionService.selectInstituicao().subscribe(
+      el => {
+        console.log(el);
+        this.listOfInstituicao = el.content;
+      }
+    )
+  }
+
+  private getListOfDisciplina() {
+    this.questionService.selectDisciplina().subscribe(
+      el => {
+        console.log(el);
+        this.listOfDisciplina = el.content;
+      }
+    )
+  }
+
+
+  private delNivel(nivel: Nivel) {
+  console.log("Delete nivel");
+  this.questionService;
+}
+private delAno(ano: Ano) {
+  console.log("Delete ano");
+  this.questionService;
+}
+private delDisc(disciplina: Disciplina) {
+  console.log("Delete disciplina");
+  this.questionService;
+}
+private delBanca(banca: Banca) {
+  console.log("Delete banca");
+  this.questionService;
+}
+private delInst(instituicao: Instituicao) {
+  console.log("Delete instituicao");
+  this.questionService;
+}

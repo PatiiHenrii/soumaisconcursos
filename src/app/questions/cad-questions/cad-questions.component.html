@@ -316,36 +316,36 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="questaoNivel">Nivel</label>
-                        <select id="questaoNivel" [formControl]="formMain.get('nivel').get('nivel')" class="form-control">
-                            <option *ngFor="let iNivel of listOfNiveis" [value]="iNivel.nivel">{{iNivel.nivel}}
+                        <select id="questaoNivel" [formControl]="formMain.get('nivel')" class="form-control" [compareWith]="compareSource">
+                            <option *ngFor="let iNivel of listOfNiveis" [ngValue]="iNivel">{{iNivel.nivel}}
                             </option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="questaoAno">Ano</label>
-                        <select id="questaoAno" [formControl]="formMain.get('ano').get('ano')" class="form-control">
-                            <option *ngFor="let iAno of listOfAnos" [value]=iAno.ano>{{iAno.ano}}</option>
+                        <select id="questaoAno" [formControl]="formMain.get('ano')" class="form-control" [compareWith]="compareSource">
+                            <option *ngFor="let iAno of listOfAnos" [ngValue]=iAno>{{iAno.ano}}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="questaoBanca">Banca</label>
-                        <select id="questaoBanca" [formControl]="formMain.get('banca').get('banca')" class="form-control">
-                            <option *ngFor="let iBanca of listOfBanca" [value]=iBanca.banca>{{iBanca.banca}}</option>
+                        <select id="questaoBanca" [formControl]="formMain.get('banca')" class="form-control" [compareWith]="compareSource">
+                            <option *ngFor="let iBanca of listOfBanca" [ngValue]=iBanca>{{iBanca.banca}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="questaoInst">Instituiçao</label>
-                        <select id="questaoInst" [formControl]="formMain.get('instituicao').get('instituicao')" class="form-control">
-                            <option *ngFor="let iInst of listOfInstituicao" [value]=iInst.instituicao>{{iInst.instituicao}}
+                        <select id="questaoInst" [formControl]="formMain.get('instituicao')" class="form-control" [compareWith]="compareSource">
+                            <option *ngFor="let iInst of listOfInstituicao" [ngValue]=iInst>{{iInst.instituicao}}
                             </option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="questaoDisc">Disciplina</label>
-                        <select id="questaoDisc" [formControl]="formMain.get('disciplina').get('disciplina')" class="form-control">
-                            <option *ngFor="let iDisc of listOfDisciplina" [value]=iDisc.disciplina>{{iDisc.disciplina}}
+                        <select id="questaoDisc" [formControl]="formMain.get('disciplina')" class="form-control" [compareWith]="compareSource">
+                            <option *ngFor="let iDisc of listOfDisciplina" [ngValue]=iDisc>{{iDisc.disciplina}}
                             </option>
                         </select>
                     </div>
@@ -383,8 +383,8 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="resposta">Resposta</label>
-                        <select id="resposta" class="form-control" [formControl]="formMain.get('resposta').get('valor')">
-                            <option *ngFor="let item of listOfResposta; let i=index" [value]=item.valor>{{item.item}} - {{item.valor}}</option>
+                        <select id="resposta" class="form-control" [formControl]="formMain.get('resposta')" [compareWith]="compareSource">
+                            <option *ngFor="let item of listOfResposta; let i=index" [ngValue]=item>{{item.item}} - {{item.valor}}</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary" (click)="save('questao')">Cadastrar</button>

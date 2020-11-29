@@ -53,51 +53,9 @@ export class CadQuestionsComponent implements OnInit {
       { title: 'Banca', type: 'banca', dataToList: this.listOfBanca },
       { title: 'Instituição', type: 'instituicao', dataToList: this.listOfInstituicao },
     ];
-  }
 
-  private getListOfNiveis() {
-    this.questionService.selectNiveis().subscribe(
-      el => {
-        console.log(el);
-        this.listOfNiveis = el.content;
-      }
-    )
-  }
-
-  private getListOfAnos() {
-    this.questionService.selectAnos().subscribe(
-      el => {
-        console.log(el);
-        this.listOfAnos = el.content;
-      }
-    )
-  }
-
-  private getListOfBancas() {
-    this.questionService.selectBancas().subscribe(
-      el => {
-        console.log(el);
-        this.listOfBanca = el.content;
-      }
-    )
-  }
-
-  private getListOfInstituicao() {
-    this.questionService.selectInstituicao().subscribe(
-      el => {
-        console.log(el);
-        this.listOfInstituicao = el.content;
-      }
-    )
-  }
-
-  private getListOfDisciplina() {
-    this.questionService.selectDisciplina().subscribe(
-      el => {
-        console.log(el);
-        this.listOfDisciplina = el.content;
-      }
-    )
+    this.formMain = this.builderFormQuestao();
+    this.changeListItens();
   }
 
   get itensArray() {
@@ -123,20 +81,19 @@ export class CadQuestionsComponent implements OnInit {
     });
   }
 
-  builderFormQuestao(formDatas: Questao) {
+  builderFormQuestao(formDatas?: Questao): FormGroup{
     console.log(formDatas);
-    this.formMain = this.fb.group({
+    return this.fb.group({
       id: formDatas && formDatas.id ? formDatas.id : null,
-      nivel: this.buildFormSource('nivel', formDatas && formDatas.nivel ? formDatas.nivel : null),
-      ano: this.buildFormSource('ano', formDatas && formDatas.ano ? formDatas.ano : null),
-      disciplina: this.buildFormSource('disciplina', formDatas && formDatas.disciplina ? formDatas.disciplina : null),
-      banca: this.buildFormSource('banca', formDatas && formDatas.banca ? formDatas.banca : null),
-      instituicao: this.buildFormSource('instituicao', formDatas && formDatas.instituicao ? formDatas.instituicao : null),
+      nivel: [this.buildFormSource('nivel', formDatas && formDatas.nivel ? formDatas.nivel : null)],
+      ano: [this.buildFormSource('ano', formDatas && formDatas.ano ? formDatas.ano : null)],
+      disciplina: [this.buildFormSource('disciplina', formDatas && formDatas.disciplina ? formDatas.disciplina : null)],
+      banca: [this.buildFormSource('banca', formDatas && formDatas.banca ? formDatas.banca : null)],
+      instituicao: [this.buildFormSource('instituicao', formDatas && formDatas.instituicao ? formDatas.instituicao : null)],
       questao: formDatas && formDatas.questao ? formDatas.questao : '',
       itens: formDatas && formDatas.itens ? this.fb.array(formDatas.itens) : this.fb.array([this.createItem()]),
-      resposta: this.createItem(formDatas && formDatas.reposta ? formDatas.reposta : null)
+      resposta: [this.createItem(formDatas && formDatas.reposta ? formDatas.reposta : null)]
     });
-    this.changeListItens();
   }
 
   private buildFormSource(type: string, source?: any): FormGroup {
@@ -187,9 +144,10 @@ export class CadQuestionsComponent implements OnInit {
   }
 
   changeListItens() {
-    this.formMain.get('itens').valueChanges.subscribe(
-      el => this.listOfResposta = el
-    )
+    if(this.formMain.get('itens'))
+      this.formMain.get('itens').valueChanges.subscribe(
+        el => this.listOfResposta = el
+      )
   }
 
   public changeSource(type: string, source: any) {
@@ -200,7 +158,6 @@ export class CadQuestionsComponent implements OnInit {
 
   save(type: string) {
     console.log(this.listOfNiveis);
-    // this.setNivel();
     var source: any = this.formMain.value;
     
     console.log(source);
@@ -236,6 +193,11 @@ export class CadQuestionsComponent implements OnInit {
       }
     );
 
+  }
+
+  setFormValue(type: string, value: string) {
+    console.log(JSON.stringify(type));
+    console.log(this.formMain.value)
   }
 
   deleteItem(source: any, type: string) {
@@ -292,32 +254,7 @@ export class CadQuestionsComponent implements OnInit {
         break;
     }
   }
-
-  private delNivel(nivel: Nivel) {
-    console.log("Delete nivel");
-    this.questionService;
-  }
-
-  private delAno(ano: Ano) {
-    console.log("Delete ano");
-    this.questionService;
-  }
-
-  private delDisc(disciplina: Disciplina) {
-    console.log("Delete disciplina");
-    this.questionService;
-  }
-
-  private delBanca(banca: Banca) {
-    console.log("Delete banca");
-    this.questionService;
-  }
-
-  private delInst(instituicao: Instituicao) {
-    console.log("Delete instituicao");
-    this.questionService;
-  }
-
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -326,6 +263,10 @@ export class CadQuestionsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  compareSource(obj1, obj2) {
+    return obj1 && obj2 ? obj1.id === obj2 : obj1 === obj2;
   }
 
   private setNivel() {
