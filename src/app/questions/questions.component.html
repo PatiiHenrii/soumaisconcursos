@@ -12,8 +12,7 @@
         </div>
         <!-- SVG separator -->
         <div class="separator separator-bottom separator-skew">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
             </svg>
         </div>
@@ -40,10 +39,7 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="form-group">
                                         <div class="input-group mb-4">
-                                            <input type="text" class="form-control" (change)="searchBy('ano')"
-                                                [(ngModel)]="ano" [ngbTypeahead]="searchAno" [resultTemplate]="tmpAno"
-                                                [inputFormatter]="formatterAno" placeholder="Ano"
-                                                [editable]='false' [focusFirst]='true' />
+                                            <input type="text" class="form-control" (change)="searchBy('ano')" [(ngModel)]="ano" [ngbTypeahead]="searchAno" [resultTemplate]="tmpAno" [inputFormatter]="formatterAno" placeholder="Ano" [editable]='false' [focusFirst]='true' />
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
                                                     <i class="ni ni-zoom-split-in"></i>
@@ -55,10 +51,7 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="form-group">
                                         <div class="input-group mb-4">
-                                            <input type="text" class="form-control" (change)="searchBy('banca')"
-                                            [(ngModel)]="banca" [ngbTypeahead]="searchBanca" [resultTemplate]="tmpBan" 
-                                            [inputFormatter]="formatterBan" placeholder="Banca"
-                                            [editable]='false' [focusFirst]='true'/>
+                                            <input type="text" class="form-control" (change)="searchBy('banca')" [(ngModel)]="banca" [ngbTypeahead]="searchBanca" [resultTemplate]="tmpBan" [inputFormatter]="formatterBan" placeholder="Banca" [editable]='false' [focusFirst]='true' />
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i
                                                         class="ni ni-zoom-split-in"></i></span>
@@ -69,10 +62,8 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="form-group">
                                         <div class="input-group mb-4">
-                                            <input type="text" class="form-control" (change)="searchBy('disciplina')"
-                                            [(ngModel)]="disciplina" [ngbTypeahead]="searchDisciplina" [resultTemplate]="tmpDis"
-                                            [inputFormatter]="formatterDis" placeholder="Disciplina"
-                                            [editable]='false' [focusFirst]='true' />
+                                            <input type="text" class="form-control" (change)="searchBy('disciplina')" [(ngModel)]="disciplina" [ngbTypeahead]="searchDisciplina" [resultTemplate]="tmpDis" [inputFormatter]="formatterDis" placeholder="Disciplina" [editable]='false' [focusFirst]='true'
+                                            />
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i
                                                         class="ni ni-zoom-split-in"></i></span>
@@ -83,10 +74,8 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="form-group">
                                         <div class="input-group mb-4">
-                                            <input type="text" class="form-control" (change)="searchBy('instituicao')"
-                                            [(ngModel)]="instituicao" [ngbTypeahead]="searchInstituicao" [resultTemplate]="tmpIns"
-                                            [inputFormatter]="formatterIns" placeholder="Instituiçao"
-                                            [editable]='false' [focusFirst]='true'/>
+                                            <input type="text" class="form-control" (change)="searchBy('instituicao')" [(ngModel)]="instituicao" [ngbTypeahead]="searchInstituicao" [resultTemplate]="tmpIns" [inputFormatter]="formatterIns" placeholder="Instituiçao" [editable]='false' [focusFirst]='true'
+                                            />
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i
                                                         class="ni ni-zoom-split-in"></i></span>
@@ -100,40 +89,30 @@
                                 <p class="m-0">Filtar por: </p>
                                 <div *ngIf="searchList.length > 0" class="d-flex flex-wrap">
                                     <div *ngFor="let search of searchList" class="d-flex flex-wrap">
-                                        <div *ngIf="search['ano'] && search['ano'].length > 0"
-                                            class="badge badge-primary m-1" style="font-size: 80%;"> Ano
-                                            <span *ngFor="let item of search['ano']; let i = index"
-                                                class="badge badge-pill badge-light text-uppercase m-0 mr-1"
-                                                style="font-size: 100%;">
+                                        <div *ngIf="search['ano'] && search['ano'].length > 0" class="badge badge-primary m-1" style="font-size: 80%;"> Ano
+                                            <span *ngFor="let item of search['ano']; let i = index" class="badge badge-pill badge-light text-uppercase m-0 mr-1" style="font-size: 100%;">
                                                 {{item.ano}}
                                                 <i class="fa fa-times-circle ml-1" (click)="remove('ano', i )"></i>
                                             </span>
                                         </div>
-                                        <div *ngIf="search['banca'] && search['banca'].length > 0"
-                                            class="badge badge-primary m-1" style="font-size: 80%;"> Banca
-                                            <span *ngFor="let item of search['banca']; let i = index"
-                                                class="badge badge-pill badge-light text-uppercase m-0 mr-1"
-                                                style="font-size: 100%;">
+                                        <div *ngIf="search['banca'] && search['banca'].length > 0" class="badge badge-primary m-1" style="font-size: 80%;"> Banca
+                                            <span *ngFor="let item of search['banca']; let i = index" class="badge badge-pill badge-light text-uppercase m-0 mr-1" style="font-size: 100%;">
                                                 {{item.banca}}
                                                 <i class="fa fa-times-circle ml-1" (click)="remove('banca', i )"></i>
                                             </span>
                                         </div>
-                                        <div *ngIf="search['disciplina'] && search['disciplina'].length > 0"
-                                            class="badge badge-primary m-1" style="font-size: 80%;"> Disciplina
-                                            <span *ngFor="let item of search['disciplina']; let i = index"
-                                                class="badge badge-pill badge-light text-uppercase m-0 mr-1"
-                                                style="font-size: 100%;">
+                                        <div *ngIf="search['disciplina'] && search['disciplina'].length > 0" class="badge badge-primary m-1" style="font-size: 80%;"> Disciplina
+                                            <span *ngFor="let item of search['disciplina']; let i = index" class="badge badge-pill badge-light text-uppercase m-0 mr-1" style="font-size: 100%;">
                                                 {{item.disciplina}}
-                                                <i class="fa fa-times-circle ml-1" (click)="remove('disciplina', i )"></i>
+                                                <i class="fa fa-times-circle ml-1"
+                                                    (click)="remove('disciplina', i )"></i>
                                             </span>
                                         </div>
-                                        <div *ngIf="search['instituicao'] && search['instituicao'].length > 0"
-                                            class="badge badge-primary m-1" style="font-size: 80%;"> Institucão
-                                            <span *ngFor="let item of search['instituicao']; let i = index"
-                                                class="badge badge-pill badge-light text-uppercase m-0 mr-1"
-                                                style="font-size: 100%;">
+                                        <div *ngIf="search['instituicao'] && search['instituicao'].length > 0" class="badge badge-primary m-1" style="font-size: 80%;"> Institucão
+                                            <span *ngFor="let item of search['instituicao']; let i = index" class="badge badge-pill badge-light text-uppercase m-0 mr-1" style="font-size: 100%;">
                                                 {{item.instituicao}}
-                                                <i class="fa fa-times-circle ml-1" (click)="remove('instituicao', i )"></i>
+                                                <i class="fa fa-times-circle ml-1"
+                                                    (click)="remove('instituicao', i )"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -147,7 +126,7 @@
                             </p>
                             <div class="column">
                                 <div *ngFor="let questao of questaoList">
-                                    <hr class="mt-3 mb-2" />
+                                    <hr class="border-1">
                                     <div class="d-flex flex-wrap border bg-secondary p-1 mb-3">
                                         <small class="pr-2 border-right">
                                             <strong>{{questao.codigo}}</strong>
@@ -164,49 +143,56 @@
                                     </div>
                                     <p>{{questao.questao}}:</p>
                                     <div class="d-flex flex-row align-items-center mb-2" *ngFor="let item of questao.itens">
-                                        <div class="pl-2 pr-2 rounded-circle border border-primary ml-4 text-uppercase text-primary">
-                                            {{item.item}}
-                                        </div>
-                                        <div class="pl-2">
-                                            {{item.valor}}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="quetions-{{questao.codigo}}" id="exampleRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                {{item.item | uppercase}} - {{item.valor}}
+                                            </label>
                                         </div>
                                     </div>
                                     <ngb-tabset class="custom-tab-content flex-column flex-md-row" type="pills">
                                         <ngb-tab>
-                                          <ng-template ngbTabTitle>
-                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i> Comentarios do professor
-                                          </ng-template>
+                                            <ng-template ngbTabTitle>
+                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i> Comentarios do professor
+                                            </ng-template>
                                             <ng-template ngbTabContent>
-                                              <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-                                              <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
+                                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher
+                                                    retro keffiyeh dreamcatcher synth.
+                                                </p>
+                                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
+                                                </p>
                                             </ng-template>
                                         </ngb-tab>
                                         <ngb-tab>
-                                          <ng-template ngbTabTitle>
-                                            <i class="fa fa-comments" aria-hidden="true"></i> Comentarios
-                                          </ng-template>
+                                            <ng-template ngbTabTitle>
+                                                <i class="fa fa-comments" aria-hidden="true"></i> Comentarios
+                                            </ng-template>
                                             <ng-template ngbTabContent>
-                                                <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                                <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                                                </p>
                                             </ng-template>
                                         </ngb-tab>
                                         <ngb-tab>
-                                          <ng-template ngbTabTitle>
-                                              <i class="fa fa-flag"></i> Notificar erro
-                                          </ng-template>
+                                            <ng-template ngbTabTitle>
+                                                <i class="fa fa-flag"></i> Notificar erro
+                                            </ng-template>
                                             <ng-template ngbTabContent>
-                                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+                                                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher
+                                                    retro keffiyeh dreamcatcher synth.
+                                                </p>
                                             </ng-template>
                                         </ngb-tab>
                                     </ngb-tabset>
                                 </div>
                             </div>
                             <nav aria-label="Page navigation example">
-                                <ngb-pagination class="d-flex justify-content-start" [collectionSize]="collectionSize"
-                                [(page)]="page" (pageChange)="changePage($event)">
-                                  <ng-template ngbPaginationPrevious><i _ngcontent-c9="" class="fa fa-angle-left"></i></ng-template>
-                                  <ng-template ngbPaginationNext><i _ngcontent-c9="" class="fa fa-angle-right"></i></ng-template>
+                                <ngb-pagination class="d-flex justify-content-start" [collectionSize]="collectionSize" [(page)]="page" (pageChange)="changePage($event)">
+                                    <ng-template ngbPaginationPrevious><i _ngcontent-c9="" class="fa fa-angle-left"></i>
+                                    </ng-template>
+                                    <ng-template ngbPaginationNext><i _ngcontent-c9="" class="fa fa-angle-right"></i>
+                                    </ng-template>
                                 </ngb-pagination>
-                              </nav>
+                            </nav>
                         </div>
                     </div>
                 </section>
