@@ -127,7 +127,7 @@
                             <div class="column">
                                 <div *ngFor="let questao of questaoList">
                                     <hr class="border-1">
-                                    <div class="d-flex flex-wrap border bg-secondary p-1 mb-3">
+                                    <div class="d-flex flex-wrap border bg-secondary p-2 mb-3">
                                         <small class="pr-2 border-right">
                                             <strong>{{questao.codigo}}</strong>
                                         </small>
@@ -150,6 +150,7 @@
                                             </label>
                                         </div>
                                     </div>
+                                    <button type="button" class="btn btn-success btn-sm">Responder</button>
                                     <ngb-tabset class="custom-tab-content flex-column flex-md-row" type="pills">
                                         <ngb-tab>
                                             <ng-template ngbTabTitle>
