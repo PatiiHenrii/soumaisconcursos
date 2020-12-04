@@ -14,9 +14,10 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import { SectionsModule } from './sections/sections.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QuestionsComponent } from './questions/questions.component';
 import { CadQuestionsComponent } from './questions/cad-questions/cad-questions.component';
+import { HttpIntercepterService } from './shared/providers/http-intercepter/http-intercepter.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { CadQuestionsComponent } from './questions/cad-questions/cad-questions.c
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterService, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

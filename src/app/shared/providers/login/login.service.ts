@@ -3,8 +3,9 @@ import { Usuario } from 'src/app/shared/models/usuario';
 import { Observable, of } from 'rxjs';
 import { take, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
-const urlApi = "http://localhost:8080/usuario"
+const urlApi = environment.api_uri;
 
 @Injectable({
   providedIn: 'root'
