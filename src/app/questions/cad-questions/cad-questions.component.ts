@@ -162,8 +162,9 @@ export class CadQuestionsComponent implements OnInit {
     
     console.log(source);
     this.questionService.saveSource(source, type).subscribe(
-      () => {
-        this.updateTable(type);
+      (el) => {
+        console.log(el)
+        // this.updateTable(type);
       }
     );
   }
@@ -267,16 +268,5 @@ export class CadQuestionsComponent implements OnInit {
 
   compareSource(obj1, obj2) {
     return obj1 && obj2 ? obj1.id === obj2 : obj1 === obj2;
-  }
-
-  private setNivel() {
-    this.listOfNiveis.forEach(el => {
-      console.log(el.id)
-      console.log(this.formMain.get('nivel').get('id').value);
-      if(el.id === parseInt(this.formMain.get('nivel').get('id').value)) {
-        console.log(el.nivel)
-        this.formMain.get('nivel').get('nivel').setValue(el.nivel);
-      }
-    });
   }
 }

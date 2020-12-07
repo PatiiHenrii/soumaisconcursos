@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../shared/providers/login/login.service';
 import { Usuario } from '../shared/models/usuario';
+import { Route } from '@angular/compiler/src/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-signup',
@@ -15,7 +17,7 @@ export class SignupComponent implements OnInit {
     focus2;
 
     formUser: FormGroup;
-    constructor(private fb: FormBuilder, private _login: LoginService) { }
+    constructor(private fb: FormBuilder, private _login: LoginService, private router: Router) { }
 
     ngOnInit() {
         this.formUser = this.fb.group({
@@ -33,7 +35,7 @@ export class SignupComponent implements OnInit {
         user.senha = this.formUser.get('email').value;
         user.data_inscricao = new Date();
         this._login.createUser(user).subscribe(
-            () => console.log("sucesso!"),
+            () => this.router.navigate(['login']),
             () => console.log("Erro")
         );
     }
