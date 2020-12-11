@@ -16,14 +16,17 @@ export class SignupComponent implements OnInit {
     focus1;
     focus2;
 
+    public termAccept = false
+
     formUser: FormGroup;
     constructor(private fb: FormBuilder, private _login: LoginService, private router: Router) { }
 
     ngOnInit() {
         this.formUser = this.fb.group({
             nome: ['', Validators.required],
-            email: ['', Validators.required],
-            senha: ['', Validators.required]
+            email: ['', [Validators.required, Validators.email]],
+            senha: ['', Validators.required],
+            termAccept: [false, Validators.required]
         });
     }
 
@@ -35,7 +38,9 @@ export class SignupComponent implements OnInit {
         user.senha = this.formUser.get('email').value;
         user.data_inscricao = new Date();
         this._login.createUser(user).subscribe(
-            () => this.router.navigate(['login']),
+            () => {
+                // this.router.navigate(['login']);
+            },
             () => console.log("Erro")
         );
     }

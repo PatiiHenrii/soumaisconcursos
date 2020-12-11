@@ -28,7 +28,7 @@ export class LoginService {
 
   createUser(usuario: Usuario):Observable<Usuario> {
     console.log(usuario);
-    return this.http.post<Usuario>(urlApi, usuario, this.httpOptions)
+    return this.http.post<Usuario>(`${urlApi}/usuario/register`, usuario, this.httpOptions)
     .pipe(
       take(1),
       catchError(this.handleError<Usuario>('createUser'))
