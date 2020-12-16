@@ -13,17 +13,18 @@ export class AuthenticatedService {
   constructor(private http: HttpClient) { }
 
   authenticatedUser(username, password) {
-    let basicAuth = 'Basic '+ window.btoa(username + ':' + password);
+    // let basicAuth = 'Basic '+ window.btoa(username + ':' + password);
 
-    let headers = new HttpHeaders({
-        Authorization: basicAuth
-    });
-    return this.http.get(url_api, {headers})
+    // let headers = new HttpHeaders({
+    //     Authorization: basicAuth
+    // });
+    return this.http.post(`${url_api}/authenticate`, {username, password})
       .pipe(
         map(
           data => {
+            console.log(data)
             sessionStorage.setItem('authenticatedUser', username);
-            sessionStorage.setItem('token', basicAuth);
+            sessionStorage.setItem('token', `Bearer ${data['token']}`);
           }
         )
       )

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Usuario } from '../shared/models/usuario';
+import { AuthenticatedService } from '../shared/providers/authenticated/authenticated.service';
 
 declare var FB: any;
 
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   focus = true;
   focus1 = false;
   formUser: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private authe: AuthenticatedService) { }
 
   ngOnInit() {
     this.loginByFacebook();
@@ -26,14 +28,15 @@ export class LoginComponent implements OnInit {
       codigo: [usuario.codigo],
       primeiro_nome: [usuario.primeiro_nome],
       segundo_nome: [usuario.segundo_nome],
-      email: [usuario.email],
+      email: [usuario.email, [Validators.email, Validators.required]],
       endreco: [usuario.endreco],
       cidade: [usuario.cidade],
       pais: [usuario.pais],
       codigo_postal: [usuario.codigo_postal],
       data_inscricao: [usuario.data_inscricao],
       tipo_inscricao: [usuario.tipo_inscricao],
-      dados_inscricao: [usuario.dados_inscricao]
+      dados_inscricao: [usuario.dados_inscricao],
+      senha: [usuario.senha, Validators.required]
     });
   }
 
@@ -82,5 +85,10 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
+    const user = this.formUser.get('email').value;
+    const pass = this.formUser.get('senha').value;
+    this.authe.authenticatedUser(user, pass).subscribe(
+      el => console.log(el)
+    )
   }
 }
