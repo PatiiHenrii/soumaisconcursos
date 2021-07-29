@@ -124,7 +124,7 @@
                             <p class="text-uppercase font-weight-bold mb-2" *ngIf="questaoList">
                                 <small> Foram encontradas mais de {{questaoList.length}} questões</small>
                             </p>
-                            <div class="column">
+                            <div class="column" *ngIf="questaoList">
                                 <div *ngFor="let questao of questaoList">
                                     <hr class="border-1">
                                     <div class="d-flex flex-wrap border bg-secondary p-2 mb-3">
@@ -134,14 +134,14 @@
                                         <small class="ml-2 mr-2">
                                             <strong>Ano:</strong> {{questao.ano.ano}}
                                         </small>
-                                        <small class="ml-2 mr-2">
+                                        <small class="ml-2 mr-2" *ngIf="questao.banca">
                                             <strong>Banca:</strong> {{questao.banca.banca}}
                                         </small>
-                                        <small class="ml-2 mr-2">
+                                        <small class="ml-2 mr-2" *ngIf="questao.instituicao">
                                             <strong>Instituição:</strong> {{questao.instituicao.instituicao}}
                                         </small>
                                     </div>
-                                    <p>{{questao.questao}}:</p>
+                                    <p>{{questao.questao}}</p>
                                     <div class="d-flex flex-row align-items-center mb-2" *ngFor="let item of questao.itens">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="quetions-{{questao.codigo}}" id="exampleRadios1" value="option1" checked>

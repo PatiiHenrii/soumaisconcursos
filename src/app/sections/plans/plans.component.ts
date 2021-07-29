@@ -32,9 +32,6 @@ export class PlansComponent implements OnInit {
   
 
   ngOnInit(): void {
-    // console.log(this.listPlans);
-    // console.log(typeof(this.listPlans));
-    // console.log(this.listPlans[0]);
   }
 
   getPath(){

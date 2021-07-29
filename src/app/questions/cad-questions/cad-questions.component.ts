@@ -42,7 +42,6 @@ export class CadQuestionsComponent implements OnInit {
     this.listOfBanca = this.activeReoute.snapshot.data.banca.content;
     this.listOfInstituicao = this.activeReoute.snapshot.data.inst.content;
     this.listOfQuestions = this.activeReoute.snapshot.data.questoes.content;
-    console.log(this.listOfQuestions);
   }
 
   ngOnInit(): void {
@@ -55,16 +54,18 @@ export class CadQuestionsComponent implements OnInit {
     ];
 
     this.formMain = this.builderFormQuestao();
+    console.log(this.formMain);
     this.changeListItens();
   }
 
   get itensArray() {
     return this.formMain.get('itens') as FormArray;
   }
-  createItem(item?: Item): FormGroup {
+  createItem(item?: Item) {
     return this.fb.group({
-      item: item ? item : '',
-      valor: item ? item : ''
+      id: item ? item.id : null,
+      item: item ? item.item : '',
+      valor: item ? item.valor : ''
     });
   }
   addItem() {
@@ -82,29 +83,41 @@ export class CadQuestionsComponent implements OnInit {
   }
 
   builderFormQuestao(formDatas?: Questao): FormGroup{
-    console.log(formDatas);
     return this.fb.group({
-      id: formDatas && formDatas.id ? formDatas.id : null,
-      nivel: [this.buildFormSource('nivel', formDatas && formDatas.nivel ? formDatas.nivel : null)],
-      ano: [this.buildFormSource('ano', formDatas && formDatas.ano ? formDatas.ano : null)],
-      disciplina: [this.buildFormSource('disciplina', formDatas && formDatas.disciplina ? formDatas.disciplina : null)],
-      banca: [this.buildFormSource('banca', formDatas && formDatas.banca ? formDatas.banca : null)],
-      instituicao: [this.buildFormSource('instituicao', formDatas && formDatas.instituicao ? formDatas.instituicao : null)],
+      codigo: formDatas && formDatas.codigo ? formDatas.codigo : null,
+      nivel: this.buildFormSource('nivel', formDatas && formDatas.nivel ? formDatas.nivel : null),
+      ano: this.buildFormSource('ano', formDatas && formDatas.ano ? formDatas.ano : null),
+      disciplina: this.buildFormSource('disciplina', formDatas && formDatas.disciplina ? formDatas.disciplina : null),
+      banca: this.buildFormSource('banca', formDatas && formDatas.banca ? formDatas.banca : null),
+      instituicao: this.buildFormSource('instituicao', formDatas && formDatas.instituicao ? formDatas.instituicao : null),
       questao: formDatas && formDatas.questao ? formDatas.questao : '',
-      itens: formDatas && formDatas.itens ? this.fb.array(formDatas.itens) : this.fb.array([this.createItem()]),
-      resposta: [this.createItem(formDatas && formDatas.reposta ? formDatas.reposta : null)]
+      itens: this.setItens(formDatas ? formDatas.itens : null),
+      // resposta: formDatas && formDatas.resposta ? formDatas.resposta : null,
     });
   }
 
-  private buildFormSource(type: string, source?: any): FormGroup {
-    return this.fb.group({
-      id: [source ? source.id : null] ,
-      [type]: [ source ? source[type] : "" ]
-    });
+  private setItens(itens?: Item[]) {
+    const formArray = new FormArray([]);
+    if (itens && itens.length > 0) {
+      itens.forEach(el => {
+        formArray.push(this.createItem(el));
+      });
+    } else {
+      formArray.push(this.createItem());
+    }
+    return formArray;
   }
 
-  open(content, edit, type, modalType) {
+  private buildFormSource(type: string, source?: any) {
+    console.log(source)
+    return [{
+      id: source ? source.id : null ,
+      [type]: source ? source[type] : ""
+    }];
+  }
 
+  open(content, edit, type, modalType, test) {
+    console.log(test);
     let config = { windowClass: 'modal-mini', size: 'md', centered: true };
     if (modalType === 'notify') {
       config.windowClass = 'modal-danger';
@@ -117,24 +130,27 @@ export class CadQuestionsComponent implements OnInit {
     this.builderForm(type, edit);
 
     this.modalService.open(content, config).result.then((result) => {
-      console.log(`Closed with: ${result}`);
     }, (reason) => {
+      this.formMain.reset();
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
     });
   }
 
   openQuestao(content, edit, type) {
-
+    console.log(edit);
     let config = { windowClass: 'modal-mini', size: 'lg', centered: true };
 
     this.sourceType = type;
     this.sourceShow = edit;
-
-    this.builderFormQuestao(edit);
-
+    if(edit) {
+      this.formMain = this.builderFormQuestao(edit);
+    }
+    console.log(this.formMain.value)
     this.modalService.open(content, config).result.then((result) => {
       console.log(`Closed with: ${result}`);
+      this.formMain.reset();
     }, (reason) => {
+      this.formMain.reset();
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
     });
   }
@@ -156,14 +172,16 @@ export class CadQuestionsComponent implements OnInit {
     console.log(this.formMain.get(type).value);
   }
 
-  save(type: string) {
-    console.log(this.listOfNiveis);
-    var source: any = this.formMain.value;
-    
-    console.log(source);
+  save(type) {
+    var source = this.formMain.value;
+    console.log(this.formMain)
     this.questionService.saveSource(source, type).subscribe(
       (el) => {
         console.log(el)
+        if(type === "questao") {
+          this.formMain = this.builderFormQuestao(el);
+          console.log(this.formMain)
+        }
         // this.updateTable(type);
       }
     );
@@ -196,10 +214,10 @@ export class CadQuestionsComponent implements OnInit {
 
   }
 
-  setFormValue(type: string, value: string) {
-    console.log(JSON.stringify(type));
-    console.log(this.formMain.value)
-  }
+  // setFormValue(type: string, value: string) {
+  //   console.log(JSON.stringify(type));
+  //   console.log(this.formMain.value)
+  // }
 
   deleteItem(source: any, type: string) {
     this.questionService.deleteSource(source, type).subscribe(
@@ -267,6 +285,6 @@ export class CadQuestionsComponent implements OnInit {
   }
 
   compareSource(obj1, obj2) {
-    return obj1 && obj2 ? obj1.id === obj2 : obj1 === obj2;
+    return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2;
   }
 }

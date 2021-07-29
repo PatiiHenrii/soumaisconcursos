@@ -20,12 +20,13 @@ export interface Nivel {
 }
 
 export interface Item {
+  id: number;
   item: string;
   valor: string;
 }
 
 export interface Questao {
-  id: number;
+  codigo: number;
   ano: Ano;
   banca: Banca;
   instituicao: Instituicao;
@@ -33,5 +34,5 @@ export interface Questao {
   nivel: Nivel;
   itens: Item[];
   questao: string;
-  reposta: Item;
+  resposta: Item;
 }

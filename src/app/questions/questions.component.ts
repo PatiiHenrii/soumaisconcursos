@@ -46,14 +46,12 @@ export class QuestionsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.activateRoute.snapshot.data);
     this.anoList = this.activateRoute.snapshot.data.ano.content;
     this.bancaList = this.activateRoute.snapshot.data.banca.content;
     this.disciplinaList = this.activateRoute.snapshot.data.disc.content;
     this.instituicaoList = this.activateRoute.snapshot.data.inst.content;
     // this.questaoList = this.activateRoute.snapshot.data.questoes.content;
     this.listQuestions();
-    console.log(this.anoList)
   }
 
   public listQuestions() {
@@ -71,34 +69,32 @@ export class QuestionsComponent implements OnInit {
   }
 
   public searchBy(type: any) {
-    console.log(type);
     switch (type) {
       case 'ano':
-        console.log(this.ano);
+
         if (this.ano) {
           this.anoToSearch.push(this.ano);
         }
         break;
       case 'banca':
-        console.log(this.banca);
+
         if (this.banca) {
           this.bancaToSearch.push(this.banca);
         }
         break;
       case 'disciplina':
-        console.log(this.disciplina);
+
         if (this.disciplina) {
           this.disciplinaToSearch.push(this.disciplina);
         }
         break;
       case 'instituicao':
-        console.log(this.instituicao);
+
         if (this.instituicao) {
           this.instituicaoToSearch.push(this.instituicao);
         }
         break;
     }
-    console.log(this.searchList);
 
   }
 
@@ -119,7 +115,7 @@ export class QuestionsComponent implements OnInit {
     }
   }
 
-  changePage(event: any){
+  changePage(event: any) {
     console.log(event);
     this.page = event;
     this.listQuestions();

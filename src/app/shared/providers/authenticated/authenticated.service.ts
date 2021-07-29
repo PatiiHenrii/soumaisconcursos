@@ -22,7 +22,6 @@ export class AuthenticatedService {
       .pipe(
         map(
           data => {
-            console.log(data)
             sessionStorage.setItem('authenticatedUser', username);
             sessionStorage.setItem('token', `Bearer ${data['token']}`);
           }

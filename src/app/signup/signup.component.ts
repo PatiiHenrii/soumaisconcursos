@@ -31,7 +31,6 @@ export class SignupComponent implements OnInit {
     }
 
     submitUser() {
-        console.log(this.formUser.value);
         let user = new Usuario();
         user.primeiro_nome = this.formUser.get('nome').value;
         user.email = this.formUser.get('email').value;
