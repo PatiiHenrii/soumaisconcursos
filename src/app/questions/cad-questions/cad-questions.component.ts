@@ -116,8 +116,7 @@ export class CadQuestionsComponent implements OnInit {
     }];
   }
 
-  open(content, edit, type, modalType, test) {
-    console.log(test);
+  open(content, edit, type, modalType) {
     let config = { windowClass: 'modal-mini', size: 'md', centered: true };
     if (modalType === 'notify') {
       config.windowClass = 'modal-danger';
@@ -137,7 +136,6 @@ export class CadQuestionsComponent implements OnInit {
   }
 
   openQuestao(content, edit, type) {
-    console.log(edit);
     let config = { windowClass: 'modal-mini', size: 'lg', centered: true };
 
     this.sourceType = type;
@@ -155,10 +153,6 @@ export class CadQuestionsComponent implements OnInit {
     });
   }
 
-  saveQuestao() {
-    console.log(this.formMain.value);
-  }
-
   changeListItens() {
     if(this.formMain.get('itens'))
       this.formMain.get('itens').valueChanges.subscribe(
@@ -167,22 +161,17 @@ export class CadQuestionsComponent implements OnInit {
   }
 
   public changeSource(type: string, source: any) {
-    console.log(source)
     this.formMain.get(type).get('id').setValue(source.id);
-    console.log(this.formMain.get(type).value);
   }
 
   save(type) {
     var source = this.formMain.value;
-    console.log(this.formMain)
     this.questionService.saveSource(source, type).subscribe(
       (el) => {
-        console.log(el)
         if(type === "questao") {
           this.formMain = this.builderFormQuestao(el);
-          console.log(this.formMain)
         }
-        // this.updateTable(type);
+        this.updateTable(type);
       }
     );
   }
@@ -198,18 +187,14 @@ export class CadQuestionsComponent implements OnInit {
     }
     console.log(listInsert);
     this.questionService.saveAllSource(listInsert, type).subscribe(
-      () => {
-        this.updateTable(type);
-      }
+      () => this.updateTable(type)
     );
   }
 
   updateItem(type: string) {
     let source = this.formMain.value;
     this.questionService.updateSource(source, type).subscribe(
-      () => {
-        this.updateTable(type);
-      }
+      () => this.updateTable(type)
     );
 
   }
@@ -221,57 +206,54 @@ export class CadQuestionsComponent implements OnInit {
 
   deleteItem(source: any, type: string) {
     this.questionService.deleteSource(source, type).subscribe(
-      el => {
-        console.log(el);
-        console.log(`Delete ${type}`, source);
-        this.updateTable(type);
-      }
+      el => this.updateTable(type)
     );
   }
 
   updateTable(type: string) {
-    switch (type) {
-      case 'nivel':
-        this.questionService.selectSource(type).subscribe(
-          el => {
-            this.listOfNiveis = el.content
-            window.location.reload();
-          }
-        );
-        break;
-      case 'ano':
-        this.questionService.selectSource(type).subscribe(
-          el => {
-            this.listOfAnos = el.content;
-            window.location.reload();
-          }
-        );
-        break;
-      case 'disciplina':
-        this.questionService.selectSource(type).subscribe(
-          el => {
-            this.listOfDisciplina = el.content
-            window.location.reload();
-          }
-        );
-        break;
-      case 'banca':
-        this.questionService.selectSource(type).subscribe(
-          el => {
-            this.listOfBanca = el.content;
-            window.location.reload();
-          }
-        );
-        break;
-      case 'instituicao':
-        this.questionService.selectSource(type).subscribe(
-          el => {
-            this.listOfInstituicao = el.content
-            window.location.reload();
-          }
-        );
-        break;
-    }
+    window.location.reload();
+    // switch (type) {
+    //   case 'nivel':
+    //     this.questionService.selectSource(type).subscribe(
+    //       el => {
+    //         this.listOfNiveis = el.content
+    //         window.location.reload();
+    //       }
+    //     );
+    //     break;
+    //   case 'ano':
+    //     this.questionService.selectSource(type).subscribe(
+    //       el => {
+    //         this.listOfAnos = el.content;
+    //         window.location.reload();
+    //       }
+    //     );
+    //     break;
+    //   case 'disciplina':
+    //     this.questionService.selectSource(type).subscribe(
+    //       el => {
+    //         this.listOfDisciplina = el.content
+    //         window.location.reload();
+    //       }
+    //     );
+    //     break;
+    //   case 'banca':
+    //     this.questionService.selectSource(type).subscribe(
+    //       el => {
+    //         this.listOfBanca = el.content;
+    //         window.location.reload();
+    //       }
+    //     );
+    //     break;
+    //   case 'instituicao':
+    //     this.questionService.selectSource(type).subscribe(
+    //       el => {
+    //         this.listOfInstituicao = el.content
+    //         window.location.reload();
+    //       }
+    //     );
+    //     break;
+    // }
   }
   
   private getDismissReason(reason: any): string {

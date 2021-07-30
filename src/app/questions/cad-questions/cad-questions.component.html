@@ -1,284 +1,315 @@
 <main class="profile-page">
-    <section class="section-profile-cover section-shaped my-0">
-        <!-- Circles background -->
-        <div class="shape shape-style-1 shape-primary alpha-4">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <!-- SVG separator -->
-        <div class="separator separator-bottom separator-skew">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
-    </section>
-    <section class="section" style="z-index: 100;">
-        <div class="container">
-            <div class="card card-profile shadow mt--450">
-                <div class="col-lg-12 mt-5 mt-lg-0">
-                    <!-- Menu -->
-                    <div class="mb-3 mt-3">
-                        <h3>Cadatro de questões</h3>
-                    </div>
-                    <ngb-tabset class="custom-tab-content flex-column flex-md-row" type="pills">
+	<section class="section-profile-cover section-shaped my-0">
+		<!-- Circles background -->
+		<div class="shape shape-style-1 shape-primary alpha-4">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<!-- SVG separator -->
+		<div class="separator separator-bottom separator-skew">
+			<svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+				xmlns="http://www.w3.org/2000/svg">
+				<polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+			</svg>
+		</div>
+	</section>
+	<section class="section" style="z-index: 100;">
+		<div class="container">
+			<div class="card card-profile shadow mt--450">
+				<div class="col-lg-12 mt-5 mt-lg-0">
+					<!-- Menu -->
+					<div class="mb-3 mt-3">
+						<h3>Cadatro de questões</h3>
+					</div>
+					<ngb-tabset class="custom-tab-content flex-column flex-md-row" type="pills">
 
-                        <ngb-tab title="Questões">
-                            <ng-template ngbTabContent class="shadow-none">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr class="row m-0">
-                                                <th scope="col" class="col-2 d-flex justify-content-center">
-                                                    <button class="btn btn-sm btn-primary" type="button" (click)="openQuestao(question)">
-                                                        <span class="btn-inner--text mr-1">Novo</span>
-                                                        <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
-                                                    </button>
-                                                </th>
-                                                <th scope="col" class="col-1">ID</th>
-                                                <th scope="col" class="col-1">Ano</th>
-                                                <th scope="col" class="col-2">Nivel</th>
-                                                <th scope="col" class="col-2">Disciplina</th>
-                                                <th scope="col" class="col-2">Banca</th>
-                                                <th scope="col" class="col-2">Instituição</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="row m-0" *ngFor="let questao of listOfQuestions">
-                                                <td class="col-2 d-flex align-items-center justify-content-around">
-                                                    <button class="btn btn-sm btn-primary" type="button" (click)="openQuestao(question, questao)">
-                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                        </button>
-                                                    <button class="btn btn-sm btn-primary" type="button" (click)="openQuestao(question, questao)">
-                                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                                        </button>
-                                                </td>
-                                                <td class="col-1">{{questao.codigo}}</td>
-                                                <td class="col-1">{{questao.ano ? questao.ano.ano : '-'}}</td>
-                                                <td class="col-2">{{questao.nivel ? questao.nivel.nivel : '-'}}</td>
-                                                <td class="col-2">{{questao.disciplina ? questao.disciplina.disciplina : '-'}}</td>
-                                                <td class="col-2">{{questao.banca ? questao.banca.banca : '-'}}</td>
-                                                <td class="col-2">{{questao.instituicao ? questao.instituicao.instituicao : '-'}}</td>
-                                                <td class="col-12">
-                                                    {{questao.questao}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </ng-template>
-                        </ngb-tab>
+						<ngb-tab title="Questões">
+							<ng-template ngbTabContent class="shadow-none">
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr class="row m-0">
+												<th scope="col" class="col-2 d-flex justify-content-center">
+													<button class="btn btn-sm btn-primary" type="button" (click)="openQuestao(question)">
+														<span class="btn-inner--text mr-1">Novo</span>
+														<span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+													</button>
+												</th>
+												<th scope="col" class="col-1">ID</th>
+												<th scope="col" class="col-1">Ano</th>
+												<th scope="col" class="col-2">Nivel</th>
+												<th scope="col" class="col-2">Disciplina</th>
+												<th scope="col" class="col-2">Banca</th>
+												<th scope="col" class="col-2">Instituição</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="row m-0 pb-4" *ngFor="let questao of listOfQuestions">
+												<td class="col-2 d-flex align-items-center justify-content-around">
+													<button class="btn btn-sm btn-primary" type="button" (click)="openQuestao(question, questao)">
+														<i class="fa fa-pencil" aria-hidden="true"></i>
+													</button>
+													<button class="btn btn-sm btn-primary" type="button"
+														(click)="open(delete, questao, 'questao', 'notify')">
+														<i class="fa fa-trash" aria-hidden="true"></i>
+													</button>
+												</td>
+												<td class="col-1">{{questao.codigo}}</td>
+												<td class="col-1">{{questao.ano ? questao.ano.ano : '-'}}</td>
+												<td class="col-2">{{questao.nivel ? questao.nivel.nivel : '-'}}</td>
+												<td class="col-2">
+													{{questao.disciplina ? questao.disciplina.disciplina : '-'}}</td>
+												<td class="col-2">{{questao.banca ? questao.banca.banca : '-'}}</td>
+												<td class="col-2">
+													{{questao.instituicao ? questao.instituicao.instituicao : '-'}}</td>
+												<td class="col-12">
+													{{questao.questao}}
+												</td>
+												<td class="col-12">
+													<ul style="list-style-type: none;padding-inline-start: 15px;">
+														<li *ngFor="let item of questao.itens">
+															<strong>{{item.item}}</strong> - {{item.valor}}
+														</li>
+													</ul>
+												</td>
+												<td class="col-10 ">
+													<strong>resposta</strong>
+												</td>
+												<td class="col-2">
+													bt
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</ng-template>
+						</ngb-tab>
 
-                        <ngb-tab *ngFor=" let tab of tabsToShow" [title]="tab.title">
-                            <ng-template ngbTabContent class="shadow-none">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr class="row m-0">
-                                                <th scope="col" class="col-3 d-flex justify-content-center">
-                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(edit, data, tab.type, 'form')">
-                                                        <span class="btn-inner--text mr-1">Novo</span>
-                                                        <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(editAll, data, tab.type, 'form')">
-                                                        <span class="btn-inner--text mr-1">Varios</span>
-                                                        <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
-                                                    </button>
-                                                </th>
-                                                <th scope="col" class="col-3">Código</th>
-                                                <th scope="col" class="col-6">{{tab.title}}</th>
-                                            </tr>
-                                        </thead>
+						<ngb-tab *ngFor=" let tab of tabsToShow" [title]="tab.title">
+							<ng-template ngbTabContent class="shadow-none">
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr class="row m-0">
+												<th scope="col" class="col-3 d-flex justify-content-center">
+													<button class="btn btn-sm btn-primary" type="button"
+														(click)="open(edit, data, tab.type, 'form')">
+														<span class="btn-inner--text mr-1">Novo</span>
+														<span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+													</button>
+													<button class="btn btn-sm btn-primary" type="button"
+														(click)="open(editAll, data, tab.type, 'form')">
+														<span class="btn-inner--text mr-1">Varios</span>
+														<span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+													</button>
+												</th>
+												<th scope="col" class="col-3">Código</th>
+												<th scope="col" class="col-6">{{tab.title}}</th>
+											</tr>
+										</thead>
 
-                                        <tbody>
-                                            <tr *ngFor="let data of tab.dataToList" class="row m-0">
-                                                <td class="col-3 d-flex justify-content-around">
-                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(edit, data, tab.type, 'form')">
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-primary" type="button" (click)="open(delete, data, tab.type, 'notify')">
-                                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    </button>
-                                                </td>
-                                                <td class="col-3">{{data.id}}</td>
-                                                <td class="col-6">{{data[tab.type]}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </ng-template>
-                        </ngb-tab>
-                    </ngb-tabset>
-                </div>
-            </div>
-        </div>
-    </section>
+										<tbody>
+											<tr *ngFor="let data of tab.dataToList" class="row m-0">
+												<td class="col-3 d-flex justify-content-around">
+													<button class="btn btn-sm btn-primary" type="button"
+														(click)="open(edit, data, tab.type, 'form')">
+														<i class="fa fa-pencil" aria-hidden="true"></i>
+													</button>
+													<button class="btn btn-sm btn-primary" type="button"
+														(click)="open(delete, data, tab.type, 'notify')">
+														<i class="fa fa-trash" aria-hidden="true"></i>
+													</button>
+												</td>
+												<td class="col-3">{{data.id}}</td>
+												<td class="col-6">{{data[tab.type]}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</ng-template>
+						</ngb-tab>
+					</ngb-tabset>
+				</div>
+			</div>
+		</div>
+	</section>
 </main>
 
 <ng-template #question let-c="close" let-d="dismiss">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h6 id="modal-title-default">Nova Questão</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d( 'Cross click')">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form role="form" [formGroup]=formMain>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="questaoNivel">Nivel</label>
-                        <select id="questaoNivel" [formControl]="formMain.get('nivel')" class="form-control" [compareWith]="compareSource">
-                            <option *ngFor="let iNivel of listOfNiveis" [ngValue]="iNivel">{{iNivel.nivel}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="questaoAno">Ano</label>
-                        <select id="questaoAno" [formControl]="formMain.get('ano')" class="form-control" [compareWith]="compareSource">
-                            <option *ngFor="let iAno of listOfAnos" [ngValue]=iAno>{{iAno.ano}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="questaoBanca">Banca</label>
-                        <select id="questaoBanca" [formControl]="formMain.get('banca')" class="form-control" [compareWith]="compareSource">
-                            <option *ngFor="let iBanca of listOfBanca" [ngValue]=iBanca>{{iBanca.banca}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="questaoInst">Instituiçao</label>
-                        <select id="questaoInst" [formControl]="formMain.get('instituicao')" class="form-control" [compareWith]="compareSource">
-                            <option *ngFor="let iInst of listOfInstituicao" [ngValue]=iInst>{{iInst.instituicao}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="questaoDisc">Disciplina</label>
-                        <select id="questaoDisc" [formControl]="formMain.get('disciplina')" class="form-control" [compareWith]="compareSource">
-                            <option *ngFor="let iDisc of listOfDisciplina" [ngValue]=iDisc>{{iDisc.disciplina}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="questao">Questão</label>
-                        <textarea id="questao" formControlName="questao" class="form-control">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h6 id="modal-title-default">Nova Questão</h6>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d( 'Cross click')">
+				<span aria-hidden="true">×</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<form role="form" [formGroup]=formMain>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="questaoNivel">Nivel</label>
+						<select id="questaoNivel" [formControl]="formMain.get('nivel')" class="form-control"
+							[compareWith]="compareSource">
+							<option *ngFor="let iNivel of listOfNiveis" [ngValue]="iNivel">{{iNivel.nivel}}
+							</option>
+						</select>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="questaoAno">Ano</label>
+						<select id="questaoAno" [formControl]="formMain.get('ano')" class="form-control"
+							[compareWith]="compareSource">
+							<option *ngFor="let iAno of listOfAnos" [ngValue]=iAno>{{iAno.ano}}</option>
+						</select>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="questaoBanca">Banca</label>
+						<select id="questaoBanca" [formControl]="formMain.get('banca')" class="form-control"
+							[compareWith]="compareSource">
+							<option *ngFor="let iBanca of listOfBanca" [ngValue]=iBanca>{{iBanca.banca}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="questaoInst">Instituiçao</label>
+						<select id="questaoInst" [formControl]="formMain.get('instituicao')" class="form-control"
+							[compareWith]="compareSource">
+							<option *ngFor="let iInst of listOfInstituicao" [ngValue]=iInst>{{iInst.instituicao}}
+							</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="questaoDisc">Disciplina</label>
+						<select id="questaoDisc" [formControl]="formMain.get('disciplina')" class="form-control"
+							[compareWith]="compareSource">
+							<option *ngFor="let iDisc of listOfDisciplina" [ngValue]=iDisc>{{iDisc.disciplina}}
+							</option>
+						</select>
+					</div>
+					<div class="form-group col-md-12">
+						<label for="questao">Questão</label>
+						<textarea id="questao" formControlName="questao" class="form-control">
                         </textarea>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <label for="questao">Lista de itens</label>
-                        <div class="form-row">
-                            <div class="form-group col-md-10">
-                                <div formArrayName="itens" *ngFor="let item of formMain.get('itens').controls; let i=index">
-                                    <div [formGroupName]="i" class="form-row mb-2">
-                                        <div class="col-md-4">
-                                            <input class="form-control" type="text" formControlName="item" placeholder="Item">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" formControlName="valor" placeholder="Valor">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-sm btn-primary" type="button" (click)="addItem()">
-                                    <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
-                                </button>
-                                <button class="btn btn-sm btn-primary" type="button" (click)="removeItem()">
-                                    <span class="btn-inner--icon"><i class="fa fa-minus"></i></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="form-group col-md-12">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-md-12">
+						<label for="questao">Lista de itens</label>
+						<div class="form-row">
+							<div class="form-group col-md-10">
+								<div formArrayName="itens" *ngFor="let item of formMain.get('itens').controls; let i=index">
+									<div [formGroupName]="i" class="form-row mb-2">
+										<div class="col-md-4">
+											<input class="form-control" type="text" formControlName="item" placeholder="Item">
+										</div>
+										<div class="col-md-8">
+											<input class="form-control" type="text" formControlName="valor" placeholder="Valor">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<button class="btn btn-sm btn-primary" type="button" (click)="addItem()">
+									<span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
+								</button>
+								<button class="btn btn-sm btn-primary" type="button" (click)="removeItem()">
+									<span class="btn-inner--icon"><i class="fa fa-minus"></i></span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="form-group col-md-12">
                         <label for="resposta">Resposta</label>
                         <select id="resposta" class="form-control" [formControl]="formMain.get('resposta')" [compareWith]="compareSource">
                             <option *ngFor="let item of listOfResposta; let i=index" [ngValue]=item>{{item.item}} - {{item.valor}}</option>
                         </select>
                     </div> -->
-                    <button type="submit" class="btn btn-primary" (click)="save('questao')">Cadastrar</button>
-                </div>
-            </form>
-        </div>
-    </div>
+					<button type="submit" class="btn btn-primary" (click)="save('questao')">Cadastrar</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </ng-template>
 
 <ng-template #edit let-c="close" let-d="dismiss">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h6 id="modal-title-default" *ngIf="sourceShow; else new">Atualizar dados</h6>
-            <ng-template #new>
-                <h6 id="modal-title-default">Novo {{sourceType}}</h6>
-            </ng-template>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d( 'Cross click')">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form role="form" [formGroup]=formMain>
-                <div class="form-group mb-3" [ngClass]="{ 'focused':focus===true}">
-                    <div class="input-group input-group-alternative">
-                        <input class="form-control" placeholder="Novo valor" type="text" (focus)="focus=true" (blur)="focus=false" [formControlName]="sourceType">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-primary" (click)="sourceShow ? updateItem(sourceType) : save(sourceType)">Salvar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+	<div class="modal-content">
+		<div class="modal-header">
+			<h6 id="modal-title-default" *ngIf="sourceShow; else new">Atualizar dados</h6>
+			<ng-template #new>
+				<h6 id="modal-title-default">Novo {{sourceType}}</h6>
+			</ng-template>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d( 'Cross click')">
+				<span aria-hidden="true">×</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<form role="form" [formGroup]=formMain>
+				<div class="form-group mb-3" [ngClass]="{ 'focused':focus===true}">
+					<div class="input-group input-group-alternative">
+						<input class="form-control" placeholder="Novo valor" type="text" (focus)="focus=true" (blur)="focus=false"
+							[formControlName]="sourceType">
+						<div class="input-group-append">
+							<button type="button" class="btn btn-primary"
+								(click)="sourceShow ? updateItem(sourceType) : save(sourceType)">Salvar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </ng-template>
 
 <ng-template #editAll let-c="close" let-d="dismiss">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h6 id="modal-title-default">Adicionar Varios</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d( 'Cross click')">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form role="form" [formGroup]=formMain>
-                <div class="form-group mb-3" [ngClass]="{ 'focused':focus===true}">
-                    <div class="input-group input-group-alternative">
-                        <textarea class="form-control" placeholder="valor1,valor2...." (focus)="focus=true" (blur)="focus=false" [formControlName]="sourceType">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h6 id="modal-title-default">Adicionar Varios</h6>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d( 'Cross click')">
+				<span aria-hidden="true">×</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<form role="form" [formGroup]=formMain>
+				<div class="form-group mb-3" [ngClass]="{ 'focused':focus===true}">
+					<div class="input-group input-group-alternative">
+						<textarea class="form-control" placeholder="valor1,valor2...." (focus)="focus=true" (blur)="focus=false"
+							[formControlName]="sourceType">
                         </textarea>
 
-                    </div>
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary my-4" (click)="saveAll(sourceType)">Salvar</button>
-                    </div>
-                </div>
+					</div>
+					<div class="text-center">
+						<button type="button" class="btn btn-primary my-4" (click)="saveAll(sourceType)">Salvar</button>
+					</div>
+				</div>
 
-            </form>
-        </div>
-    </div>
+			</form>
+		</div>
+	</div>
 </ng-template>
 
 <ng-template #delete let-c="close" let-d="dismiss">
-    <div class="modal-content bg-gradient-danger">
-        <div class="modal-header">
-            <h6 class="modal-title" id="modal-title-notification">Atenção!</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d( 'Cross click')">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="py-3 text-center">
-                <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
-                <p>Deseja realmete apagar o registo: <strong>{{sourceShow[sourceType]}}</strong>?</p>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-white" (click)="deleteItem(sourceShow, sourceType); c( 'Close click')">Apagar</button>
-            <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="c( 'Close click')">Fechar</button>
-        </div>
-    </div>
+	<div class="modal-content bg-gradient-danger">
+		<div class="modal-header">
+			<h6 class="modal-title" id="modal-title-notification">Atenção!</h6>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d( 'Cross click')">
+				<span aria-hidden="true">×</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="py-3 text-center">
+				<i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+				<p>Deseja realmete apagar o registo: <strong>{{sourceShow[sourceType]}}</strong>?</p>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-white"
+				(click)="deleteItem(sourceShow, sourceType); c( 'Close click')">Apagar</button>
+			<button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal"
+				(click)="c( 'Close click')">Fechar</button>
+		</div>
+	</div>
 </ng-template>
